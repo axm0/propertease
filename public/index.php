@@ -1,0 +1,1 @@
+echo 'Webpage loading...'; // This is your front controller
