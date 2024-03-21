@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/homehub.iml" filepath="$PROJECT_DIR$/.idea/homehub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/propertease.iml" filepath="$PROJECT_DIR$/.idea/propertease.iml" />
     </modules>
   </component>
 </project>
