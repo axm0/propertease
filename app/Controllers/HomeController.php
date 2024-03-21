@@ -1,10 +1,13 @@
 <?php
 // app/Controllers/HomeController.php
-require_once __DIR__ . '/../Core/Controller.php';
-require_once __DIR__ . '/../Views/home.php';
+require_once '../app/Core/Controller.php';
 
 class HomeController extends Controller {
+    // Method to handle the index route
     public function index() {
-        return homePage();
+        // Call the view method from the parent Controller class
+        $this->view('home');
     }
+
+    // If you need other methods for handling specific actions, they go here
 }
