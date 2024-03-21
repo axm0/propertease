@@ -5,7 +5,7 @@ require_once __DIR__ . '/../app/Controllers/AboutController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
-if ($path == '/homehub/public/about') {
+if ($path == '/propertease/public/about') {
     $controller = new AboutController();
     $controller->index();
 } else {
