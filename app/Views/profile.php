@@ -39,23 +39,46 @@
         </div>
     </div>
 
-    <div id="favorites" class="section-header pt-3">
+    <div id="favorites" class="section-header pt-5">
         <h2 class="pb-2 text">Favorites</h2>
         <div class="row pt-3">
-            <div class="col">
-                <div class="image-placeholder"></div>
+            <div class="col px-3">
+                <div class="image-placeholder mb-3"></div>
+                <label for="">Favorite Name,</label>
+                <label for="">Description</label>
             </div>
-            <div class="col">
-
+            <div class="col px-3">
+                <div class="image-placeholder mb-3"></div>
+                <label for="">Favorite Name,</label>
+                <label for="">Description</label>
             </div>
-            <div class="col">
-
+            <div class="col px-3">
+                <div class="image-placeholder mb-3"></div>
+                <label for="">Favorite Name,</label>
+                <label for="">Description</label>
             </div>
         </div>
     </div>
 
-    <div id="properties" class="section-header pt-3">
+    <div id="properties" class="section-header pt-5 mb-5">
         <h2 class="pb-2 text">Properties</h2>
+        <div class="row pt-3">
+            <div class="col px-3">
+                <div class="image-placeholder mb-3"></div>
+                <label for="">Property Name,</label>
+                <label for="">Description</label>
+            </div>
+            <div class="col px-3">
+                <div class="image-placeholder mb-3"></div>
+                <label for="">Property Name,</label>
+                <label for="">Description</label>
+            </div>
+            <div class="col px-3">
+                <div class="image-placeholder mb-3"></div>
+                <label for="">Property Name,</label>
+                <label for="">Description</label>
+            </div>
+        </div>
     </div>
 </body>
 </html>

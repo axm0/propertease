@@ -26,7 +26,7 @@ rect.profileCircle {
 }
 
 .image-placeholder {
-    width: 400px; /* Set the width of the placeholder */
+    width: 100%; /* Set the width of the placeholder */
     height: 200px; /* Set the height of the placeholder */
     border: 1px solid rgb(0,0,0); /* Set border thickness and color */
     background-color: rgba(255, 255, 255, 0.5); /* Set background color with transparency */
@@ -65,6 +65,6 @@ rect.profileCircle {
 
 .section-header {
     width:100%;
-    margin-left:100px;
-    margin-right:100px;
+    padding-left:100px;
+    padding-right:100px;
 }
