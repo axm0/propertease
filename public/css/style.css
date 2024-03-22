@@ -183,7 +183,10 @@ span.psw {
 }
 
 @keyframes animatezoom {
-    from {transform: scale(0)}
+    from {
+        transform: scale(0)
+    }
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -191,6 +194,4 @@ span.psw {
         width: 100%; /* Full width on smaller screens */
         margin: 5px 0; /* Adjusted margin for stacked elements */
     }
-}
-
 }
