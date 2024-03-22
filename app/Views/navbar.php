@@ -1,5 +1,14 @@
-
+<!-- app/Views/navbar.php -->
 <!-- Navigation Bar -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertEase</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 <div class="navigation">
     <div id="logo">
         <a href="/propertease/public/home" class="menu-item">Home/Logo</a>
@@ -35,7 +44,7 @@
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
             <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
     </form>
@@ -52,3 +61,5 @@
         }
     }
 </script>
+</body>
+</html>
