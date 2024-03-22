@@ -1,5 +1,4 @@
 <!-- app/Views/navbar.php -->
-<!-- Navigation Bar -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +18,12 @@
         <a href="#" class="menu-item">Button 3</a>
         <a href="/propertease/public/about" class="menu-item">About</a>
         <a href="/propertease/public/profile" class="menu-item">Profile</a>
-        <!-- Trigger/Open The Modal -->
         <a href="#" class="menu-item" onclick="document.getElementById('id01').style.display='block'">Login/Sign-Up</a>
     </div>
 </div>
 
-<!-- The Modal -->
 <div id="id01" class="modal">
+    <!-- Modal content -->
     <form class="modal-content animate" action="/action_page.php" method="post">
         <div class="imgcontainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -41,11 +39,6 @@
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
-        </div>
-
-        <div class="container" style="background-color:#f1f1f1">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
     </form>
 </div>
