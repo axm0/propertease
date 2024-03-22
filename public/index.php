@@ -21,4 +21,8 @@ switch ($path) {
         $controller = new ProfileController();
         $controller->index();
         break;
+    default:
+        $controller = new HomeController();
+        $controller->index();
+        break;
 }
