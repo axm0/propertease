@@ -12,7 +12,7 @@
 <body>
 <div class="profile">
     <div id="header" class="row py-4">
-        <div class="col-3 d-flex justify-content-center">
+        <div class="col-2 d-flex justify-content-center mx-3">
             <svg class="bd-placeholder-img rounded-circle" width="150" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <title>Placeholder</title>
                 <rect class="profileCircle" width="100%" height="100%"></rect>

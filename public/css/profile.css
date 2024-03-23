@@ -50,13 +50,13 @@ rect.profileCircle {
 
 .text {
     color: black;
-    font-size: 25px;
+    font-size: 35px;
     font-family: Inter, sans-serif;
     font-weight: 400;
 }
 
 .section-header {
-    width:80%;
+    width: 90%;
     margin: 0 auto;
 }
 
