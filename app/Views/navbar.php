@@ -13,7 +13,7 @@
         <a href="/propertease/public/home" class="menu-item">Home/Logo</a>
     </div>
     <div class="menu">
-        <a href="#" class="menu-item">Button 1</a>
+        <a href="/propertease/public/viewProperties" class="menu-item">View Properties</a>
         <a href="#" class="menu-item">Button 2</a>
         <a href="#" class="menu-item">Button 3</a>
         <a href="/propertease/public/about" class="menu-item">About</a>
