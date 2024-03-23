@@ -5,6 +5,7 @@ require_once __DIR__ . '/../app/Controllers/AboutController.php';
 require_once __DIR__ . '/../app/Controllers/ProfileController.php';
 require_once __DIR__ . '/../app/Controllers/ViewPropertiesController.php';
 require_once __DIR__ . '/../app/Controllers/MyPropertiesController.php';
+require_once __DIR__ . '/../app/Controllers/FavoritesController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
@@ -29,6 +30,10 @@ switch ($path) {
         break;
     case $url . 'myProperties':
         $controller = new MyPropertiesController();
+        $controller->index();
+        break;
+    case $url . 'favorites':
+        $controller = new FavoritesController();
         $controller->index();
         break;
     default:
