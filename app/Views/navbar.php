@@ -14,7 +14,7 @@
     </div>
     <div class="menu">
         <a href="/propertease/public/viewProperties" class="menu-item">View Properties</a>
-        <a href="#" class="menu-item">Button 2</a>
+        <a href="/propertease/public/myProperties" class="menu-item">My Properties</a>
         <a href="#" class="menu-item">Button 3</a>
         <a href="/propertease/public/about" class="menu-item">About</a>
         <a href="/propertease/public/profile" class="menu-item">Profile</a>
