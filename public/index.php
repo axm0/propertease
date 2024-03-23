@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../app/Controllers/HomeController.php';
 require_once __DIR__ . '/../app/Controllers/AboutController.php';
 require_once __DIR__ . '/../app/Controllers/ProfileController.php';
+require_once __DIR__ . '/../app/Controllers/ViewPropertiesController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
@@ -19,6 +20,10 @@ switch ($path) {
         break;
     case $url . 'profile':
         $controller = new ProfileController();
+        $controller->index();
+        break;
+    case $url . 'viewProperties':
+        $controller = new ViewPropertiesController();
         $controller->index();
         break;
     default:

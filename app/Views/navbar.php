@@ -1,22 +1,29 @@
-
-<!-- Navigation Bar -->
+<!-- app/Views/navbar.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertEase</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 <div class="navigation">
     <div id="logo">
         <a href="/propertease/public/home" class="menu-item">Home/Logo</a>
     </div>
     <div class="menu">
-        <a href="#" class="menu-item">Button 1</a>
+        <a href="/propertease/public/viewProperties" class="menu-item">View Properties</a>
         <a href="#" class="menu-item">Button 2</a>
         <a href="#" class="menu-item">Button 3</a>
         <a href="/propertease/public/about" class="menu-item">About</a>
         <a href="/propertease/public/profile" class="menu-item">Profile</a>
-        <!-- Trigger/Open The Modal -->
         <a href="#" class="menu-item" onclick="document.getElementById('id01').style.display='block'">Login/Sign-Up</a>
     </div>
 </div>
 
-<!-- The Modal -->
 <div id="id01" class="modal">
+    <!-- Modal content -->
     <form class="modal-content animate" action="/action_page.php" method="post">
         <div class="imgcontainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -33,11 +40,6 @@
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
         </div>
-
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-        </div>
     </form>
 </div>
 
@@ -52,3 +54,5 @@
         }
     }
 </script>
+</body>
+</html>

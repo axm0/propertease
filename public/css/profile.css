@@ -5,9 +5,6 @@
 .row>* {
     padding-right:0 !important;
     padding-left:0 !important;
-    /* padding-right: calc(var(--bs-gutter-x)* .5); */
-    /* padding-left: calc(var(--bs-gutter-x)* .5); */
-    /* margin-top: var(--bs-gutter-y); */
 }
 
 .d-flex {
@@ -26,13 +23,13 @@ rect.profileCircle {
 }
 
 .image-placeholder {
-    width: 100%; /* Set the width of the placeholder */
-    height: 200px; /* Set the height of the placeholder */
-    border: 1px solid rgb(0,0,0); /* Set border thickness and color */
-    background-color: rgba(255, 255, 255, 0.5); /* Set background color with transparency */
-    display: flex; /* Use flexbox to center content */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgb(0,0,0);
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10%;
 }
 
@@ -64,7 +61,12 @@ rect.profileCircle {
 }
 
 .section-header {
-    width:100%;
-    padding-left:100px;
-    padding-right:100px;
+    width:80%;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1600px;
+    margin: auto;
+    box-sizing: border-box;
 }
