@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #00F0FF; /* Cyan/blue color for navigation bar */
+    background-color: #3D5A80; /* Cyan/blue color for navigation bar */
     padding: 10px 20px;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .menu-item {
-    color: black;
+    color: white;
     font-size: 20px;
     font-family: Inter, sans-serif;
     font-weight: 400;
@@ -46,7 +46,7 @@
 .hero {
     width: 100%;
     height: 444px; /* Adjust height as needed */
-    background-color: #D04040; /* Red box placeholder for image */
+    background-color: #98C1D9; /* Red box placeholder for image */
     position: relative;
     display: flex;
     justify-content: center;
