@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px 0;
+}
+.title {
+    color: #000;
+    font-size: 24px;
+    margin: 0;
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.box {
+    width: 30%;
+    text-align: center;
+}
+.box a {
+    display: block;
+    text-decoration: none;
+}
+.box img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+}
+.box p {
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.hearts{
+    position: absolute;
+    display: block;
+}
+.heart{
+    margin: 0;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    outline: none;
+    color: red;
+}
+
+.heart i:hover{
+    cursor: pointer;
+}
