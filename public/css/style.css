@@ -1,264 +1,80 @@
-/* Existing styles for your application */
-.container {
-    width: 100%;
-    height: 100%;
+/* General Styles */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5; /* Light grey background, good for login and other pages */
 }
 
-.navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #3D5A80; /* Cyan/blue color for navigation bar */
-    padding: 10px 20px;
+/* Navigation Bar */
+.navbar {
+    background-color: #3D5A80; /* Cyan/blue color */
 }
 
-#logo {
-    font-size: 20px;
-    font-family: Inter, sans-serif;
-    font-weight: 400;
-    cursor: pointer;
+.navbar-brand {
+    color: white;
+    margin-right: 25px; /* Increase space between logo and nav items */
 }
 
-#searchBar {
-    width: 80%; /* Dynamically size to screen, you can adjust this value */
-    padding: 10px;
-    margin-top: 20px; /* Adjust the space between the title and search bar */
-    border: 2px solid #ccc;
-    border-radius: 5px; /* Optional: adds rounded corners */
-    box-sizing: border-box; /* Ensures padding doesn't affect the final size */
-}
-
-.menu {
-    display: flex;
+.navbar-brand img {
+    height: 30px; /* Adjust the logo size */
 }
 
 .menu-item {
     color: white;
     font-size: 20px;
-    font-family: Inter, sans-serif;
-    font-weight: 400;
     text-decoration: none;
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
+    margin-left: 20px; /* Adjust based on design preference */
 }
 
-.hero {
+/* Adjust navbar container padding for better edge spacing */
+.navbar .container, .navbar .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Login Page */
+.form-signin {
     width: 100%;
-    height: 444px; /* Adjust height as needed */
-    background-color: #98C1D9; /* Red box placeholder for image */
-    position: relative;
-}
-
-.properties {
-    /* No additional styles needed as Bootstrap will handle the layout */
-}
-
-.property-card {
-    background-color: #D9D9D9; /* Grey boxes for properties */
-    padding: 1rem;
-}
-
-/* Modal styles */
-body {font-family: Arial, Helvetica, sans-serif;}
-
-/* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-    background-color: #3D5A80;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-/* Center the image and position the close button */
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    max-width: 1600px; /* Adjust based on your design */
+    max-width: 330px;
+    padding: 15px;
     margin: auto;
-    box-sizing: border-box;
 }
 
-span.psw {
-    float: right;
-    padding-top: 16px;
+.form-signin .form-control {
+    margin-bottom: 10px;
 }
 
-/* The Modal (background) */
-.login-modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1050; /* Increased z-index value to appear on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
-.modal-backdrop {
-    z-index: 1040;
+/* Property Cards and Carousel */
+.container, .carousel, .carousel-inner, .carousel-item-container {
+    width: 100%;
 }
 
-/* Modal Content/Box */
-.login-modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;
-    border: 1px solid #888;
-    width: 80%;
+.box, .card {
+    background-color: #D9D9D9; /* Grey background for cards */
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
 }
 
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
+/* Image styles */
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
-
-/* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
-}
-
-@keyframes animatezoom {
-    from {
-        transform: scale(0)
-    }
-}
-
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .menu-item, .property-card, .search-container input[type="text"] {
-        width: 100%;
-        margin: 5px 0;
+    .navbar-brand, .menu-item {
+        font-size: 18px; /* Slightly smaller text on smaller screens */
     }
-}
 
-.carousel {
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-/* Carousel Inner Container */
-.carousel-inner {
-    width: 100%;
-}
-
-.carousel-item {
-    min-height: 400px;
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-.carousel-item > div {
-    flex: 0 0 auto;
-    width: 30%;
-    margin: 0 10px;
-}
-
-.carousel-caption {
-    bottom: 3rem;
-}
-
-/* Additional content styling */
-.additional-section {
-    padding: 2rem 0;
-}
-
-.carousel-item img {
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-}
-
-/* Carousel Item Container */
-.carousel-item-container {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    width: 100%;
-}
-
-/* Individual Item Container */
-.carousel-item-container > div {
-    flex: 0 0 auto;
-    width: 30%;
-    margin: 0 10px;
-}
-
-/* Individual Item Content */
-.carousel-item-container > div > article {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Adjust the height of the card body */
-.carousel-item-container > div > article > div:first-child {
-    flex-grow: 1;
-}
-
-/* Adjust the height of the card photo */
-.carousel-item-container > div > article > div:last-child {
-    height: 200px;
-}
-
-/* Carousel Item */
-.carousel-item {
-    display: flex;
-    align-items: center;
-    min-height: auto;
+    .box, .card {
+        margin: 5px;
+        padding: 10px;
+    }
 }

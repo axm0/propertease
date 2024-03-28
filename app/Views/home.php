@@ -1,7 +1,3 @@
-<!-- app/Views/home.php -->
-<?php
-require_once 'navbar.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +8,8 @@ require_once 'navbar.php';
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<?php require_once 'navbar.php'; ?>
+
 <div class="container-fluid">
     <div class="hero d-flex justify-content-center align-items-center">
         <div class="search-container text-center">
@@ -22,60 +20,92 @@ require_once 'navbar.php';
             </div>
         </div>
     </div>
-    <div class="properties row row-cols-1 row-cols-md-3 g-4 mt-4">
-        <!-- Carousel Container -->
-        <div id="trendingHomesCarousel" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#trendingHomesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#trendingHomesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <!-- Add more buttons for additional slides as needed -->
-            </div>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="carousel-item-container">
-                        <div>
-                            <img src="https://via.placeholder.com/800x400?text=First+Slide" class="d-block w-100" alt="First Slide">
-                        </div>
-                        <div>
-                            <img src="https://via.placeholder.com/800x400?text=Second+Slide" class="d-block w-100" alt="Second Slide">
-                        </div>
-                        <!-- Add more div elements for additional items -->
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-item-container">
-                        <div>
-                            <img src="https://via.placeholder.com/800x400?text=Third+Slide" class="d-block w-100" alt="Third Slide">
-                        </div>
-                        <div>
-                            <img src="https://via.placeholder.com/800x400?text=Fourth+Slide" class="d-block w-100" alt="Fourth Slide">
-                        </div>
-                        <!-- Add more div elements for additional items -->
-                    </div>
-                </div>
-
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#trendingHomesCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#trendingHomesCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+    <!-- Dynamic Carousel with Cards -->
+    <div id="dynamicCardsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#dynamicCardsCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#dynamicCardsCarousel" data-bs-slide-to="1"></button>
+            <!-- Add more indicators if needed -->
         </div>
 
+        <!-- Carousel Inner -->
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- Sample Card 1 -->
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/800x400?text=First+Card" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title One</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sample Card 2 -->
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/800x400?text=Second+Card" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title Two</h5>
+                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sample Card 3 -->
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/800x400?text=Third+Card" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title Three</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- Sample Card 4 -->
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/800x400?text=Fourth+Card" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title Four</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Additional sections -->
+            <!-- Additional slides with cards -->
+        </div>
+
+            <!-- Carousel Controls -->
+        <a class="carousel-control-prev" href="#dynamicCardsCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#dynamicCardsCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
     </div>
+    <!-- End of Dynamic Carousel with Cards -->
+
 </div>
 
-<!-- Include Bootstrap JavaScript at the bottom, just before the closing body tag -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/main.js"></script>
-
 </body>
 </html>

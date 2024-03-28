@@ -40,4 +40,7 @@ switch ($path) {
         $controller = new HomeController();
         $controller->index();
         break;
+    case $url . 'login':
+        require_once __DIR__ . '/../app/Views/login.php';
+        break;
 }
