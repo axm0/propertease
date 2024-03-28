@@ -13,7 +13,7 @@
 <div class="container-fluid">
     <div class="hero d-flex justify-content-center align-items-center">
         <div class="search-container text-center">
-            <h1 class="mb-4">PropertEase</h1>
+            <h1 class="mb-4 py-4">PropertEase</h1>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search..." id="searchBar" aria-label="Search" aria-describedby="search-addon">
                 <button class="btn btn-primary" type="button" id="search-addon">Search</button>
