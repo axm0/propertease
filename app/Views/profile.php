@@ -35,42 +35,70 @@
         </div>
     </div>
     <div id="favorites" class="section-header pt-5">
-        <h2 class="pb-2 text">Favorites</h2>
+        <div class="row">
+            <h2 class="pb-2 text">Top 3 Favorites <a class="btn btn-secondary rounded-pill mx-3" href="/propertease/public/favorites">Edit</a></h2>
+        </div>
         <div class="row pt-3">
             <div class="col px-3">
-                <div class="image-placeholder mb-3"></div>
-                <label for="">Favorite Name,</label>
-                <label for="">Description</label>
+                <div class="box">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/300x180" alt="Box 1">
+                        <label for="">Property Name,</label>
+                        <label for="">Description</label>
+                    </a>
+                </div>
             </div>
             <div class="col px-3">
-                <div class="image-placeholder mb-3"></div>
-                <label for="">Favorite Name,</label>
-                <label for="">Description</label>
+                <div class="box">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/300x180" alt="Box 2">
+                        <label for="">Property Name,</label>
+                        <label for="">Description</label>
+                    </a>
+                </div>
             </div>
             <div class="col px-3">
-                <div class="image-placeholder mb-3"></div>
-                <label for="">Favorite Name,</label>
-                <label for="">Description</label>
+                <div class="box">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/300x180" alt="Box 3">
+                        <label for="">Property Name,</label>
+                        <label for="">Description</label>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
     <div id="properties" class="section-header pt-5 mb-5">
-        <h2 class="pb-2 text">Properties</h2>
+        <div class="row">
+            <h2 class="pb-2 text">Top 3 Properties <a class="btn btn-secondary rounded-pill mx-3" href="/propertease/public/myProperties">Edit</a></h2>
+        </div>
         <div class="row pt-3">
             <div class="col px-3">
-                <div class="image-placeholder mb-3"></div>
-                <label for="">Property Name,</label>
-                <label for="">Description</label>
+                <div class="box">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/300x180" alt="Box 1">
+                        <label for="">Property Name,</label>
+                        <label for="">Description</label>
+                    </a>
+                </div>
             </div>
             <div class="col px-3">
-                <div class="image-placeholder mb-3"></div>
-                <label for="">Property Name,</label>
-                <label for="">Description</label>
+                <div class="box">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/300x180" alt="Box 2">
+                        <label for="">Property Name,</label>
+                        <label for="">Description</label>
+                    </a>
+                </div>
             </div>
             <div class="col px-3">
-                <div class="image-placeholder mb-3"></div>
-                <label for="">Property Name,</label>
-                <label for="">Description</label>
+                <div class="box">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/300x180" alt="Box 3">
+                        <label for="">Property Name,</label>
+                        <label for="">Description</label>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
