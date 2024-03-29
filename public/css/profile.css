@@ -60,8 +60,3 @@ rect.profileCircle {
     margin: 0 auto;
 }
 
-.container {
-    max-width: 1600px;
-    margin: auto;
-    box-sizing: border-box;
-}
