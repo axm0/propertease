@@ -30,7 +30,7 @@
     }
 </script>
 
-<div class="container">
+<div class="property-container">
     <div class="box">
         <div class="hearts">
             <Button id="btnh" class="heart"><i class="fas fa-heart"></i></Button>
@@ -78,7 +78,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="property-container">
     <div class="box">
         <div class="hearts">
             <Button id="btnh3" class="heart"><i class="fas fa-heart"></i></Button>
@@ -126,7 +126,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="property-container">
     <div class="box">
         <div class="hearts">
             <Button id="btnh6" class="heart"><i class="fas fa-heart"></i></Button>
