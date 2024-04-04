@@ -19,10 +19,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="/propertease/public/viewProperties" class="nav-link">View Properties</a></li>
+                <li class="nav-item"><a href="/propertease/public/viewProperties" class="nav-link">All Properties</a></li>
                 <li class="nav-item"><a href="/propertease/public/myProperties" class="nav-link">My Properties</a></li>
                 <li class="nav-item"><a href="/propertease/public/favorites" class="nav-link">My Favorites</a></li>
-                <li class="nav-item"><a href="/propertease/public/about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="/propertease/public/profile" class="nav-link">Profile</a></li>
                 <li class="nav-item"><a href="/propertease/public/login" class="nav-link">Login/Sign-Up</a></li>
             </ul>

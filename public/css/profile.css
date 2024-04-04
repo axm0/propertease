@@ -60,3 +60,19 @@ rect.profileCircle {
     margin: 0 auto;
 }
 
+.box {
+    width: 90%;
+    text-align: center;
+}
+.box a {
+    display: block;
+    text-decoration: none;
+}
+.box img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+}
