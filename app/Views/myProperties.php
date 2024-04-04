@@ -18,7 +18,7 @@
     <h1 class="title">My Properties</h1>
 </div>
 
-<div class="container">
+<div class="property-container">
     <div class="box">
         <a href="page1.html"> <!-- goes to property listing -->
             <img src="https://via.placeholder.com/300x180" alt="Box 1">
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="property-container">
     <div class="box">
         <a href="page4.html">
             <img src="https://via.placeholder.com/300x180" alt="Box 4">
@@ -60,7 +60,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="property-container">
     <div class="box">
         <a href="page7.html">
             <img src="https://via.placeholder.com/300x180" alt="Box 7">

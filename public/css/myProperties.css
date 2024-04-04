@@ -13,7 +13,7 @@ body {
     font-size: 24px;
     margin: 0;
 }
-.container {
+.property-container {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
