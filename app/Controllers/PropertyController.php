@@ -9,8 +9,6 @@ class PropertyController extends Controller {
         if ($propertyData) {
             $this->view('propertyDetail', ['property' => $propertyData, 'images' => $propertyImages]);
         } else {
-            // Handle the case when property data is not found
-            // For example, show an error message or redirect to a different page
             die("Property not found");
         }
     }
