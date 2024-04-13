@@ -1,109 +1,190 @@
 <!DOCTYPE html>
+<!-- app/Views/home.php -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PropertEase</title>
+    <title>PropertEase - Find Your Dream Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .featured-properties {
+            background-color: #f8f9fa;
+        }
+
+        @media (min-width: 768px) {
+            #propertyCarousel .carousel-control-prev,
+            #propertyCarousel .carousel-control-next {
+                width: 10%;
+                background-color: rgba(94, 96, 104, 0.49);
+            }
+
+            #propertyCarousel .carousel-control-prev {
+                left: -190px;
+            }
+
+            #propertyCarousel .carousel-control-next {
+                right: -190px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #propertyCarousel .carousel-control-prev,
+            #propertyCarousel .carousel-control-next {
+                width: 5%;
+                background-color: rgba(94, 96, 104, 0.49);
+            }
+
+            #propertyCarousel .carousel-control-prev {
+                left: 20px;
+            }
+
+            #propertyCarousel .carousel-control-next {
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #testimonialCarousel .carousel-control-prev,
+            #testimonialCarousel .carousel-control-next {
+                width: 10%;
+                background-color: rgba(94, 96, 104, 0.49);
+            }
+
+            #testimonialCarousel .carousel-control-prev {
+                left: -190px;
+            }
+
+            #testimonialCarousel .carousel-control-next {
+                right: -190px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #testimonialCarousel .carousel-control-prev,
+            #testimonialCarousel .carousel-control-next {
+                width: 5%;
+                background-color: rgba(94, 96, 104, 0.49);
+            }
+
+            #testimonialCarousel .carousel-control-prev {
+                left: 20px;
+            }
+
+            #testimonialCarousel .carousel-control-next {
+                right: 20px;
+            }
+        }
+        .hero {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .featured-properties {
+            padding-top: 10px;
+            background-color: #f8f9fa;
+        }
+        .testimonials {
+            padding-top: 10px;
+        }
+    </style>
 </head>
 <body>
 <?php require_once 'navbar.php'; ?>
 
-<div class="container-fluid">
-    <div class="hero d-flex justify-content-center align-items-center">
-        <div class="search-container text-center">
-            <h1 class="mb-4 py-4">PropertEase</h1>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." id="searchBar" aria-label="Search" aria-describedby="search-addon">
-                <button class="btn btn-primary" type="button" id="search-addon">Search</button>
+<section class="hero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h1 class="display-4">PropertEase</h1>
+                <p class="lead">Discover the perfect property.</p>
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter location or ZIP code">
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Dynamic Carousel with Cards -->
-    <div id="dynamicCardsCarousel" class="carousel slide" data-bs-ride="carousel">
-        <!-- Indicators -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#dynamicCardsCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#dynamicCardsCarousel" data-bs-slide-to="1"></button>
-            <!-- Add more indicators if needed -->
-        </div>
-
-        <!-- Carousel Inner -->
-        <div class="carousel-inner">
-            <!-- Slide 1 -->
-            <!-- Slide 1 -->
-            <div class="carousel-item active">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Sample Card 1 -->
-                    <div class="col">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/800x400?text=First+Card" class="card-img-top" alt="...">
+<section class="featured-properties">
+    <div class="container">
+        <h2 class="text-center mb-4">Featured Properties</h2>
+        <div id="propertyCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                $active = 'active';
+                $slideCounter = 0;
+                foreach ($images as $propertyID => $data):
+                    if ($slideCounter % 3 == 0) {
+                        if ($slideCounter > 0) {
+                            echo '</div></div>';
+                        }
+                        echo '<div class="carousel-item ' . $active . '"><div class="row">';
+                        $active = '';
+                    }
+                    $address = strlen($data['address']) > 30 ? substr($data['address'], 0, 27) . '...' : $data['address'];
+                    $description = strlen($data['description']) > 100 ? substr($data['description'], 0, 97) . '...' : $data['description'];
+                    ?>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="/images/<?= $propertyID ?>/<?= basename($data['images'][0]) ?>" alt="Property <?= $propertyID ?>" class="card-img-top">
                             <div class="card-body">
-                                <h5 class="card-title">Card Title One</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="card-title"><?= $address ?></h5>
+                                <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"><?= $description ?></p>
+                                <a href="/propertease/public/property/<?= $propertyID ?>" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Sample Card 2 -->
-                    <div class="col">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/800x400?text=Second+Card" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title Two</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Sample Card 3 -->
-                    <div class="col">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/800x400?text=Third+Card" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title Three</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                    $slideCounter++;
+                    if ($slideCounter == 6) break;
+                endforeach;
+                echo '</div></div>';
+                ?>
             </div>
-            <!-- Slide 2 -->
-            <div class="carousel-item">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Sample Card 4 -->
-                    <div class="col">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/800x400?text=Fourth+Card" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title Four</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional slides with cards -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-
-            <!-- Carousel Controls -->
-        <a class="carousel-control-prev" href="#dynamicCardsCarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#dynamicCardsCarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
     </div>
-    <!-- End of Dynamic Carousel with Cards -->
+</section>
 
-</div>
+<section class="testimonials">
+    <div class="container">
+        <h2 class="text-center mb-4">What Our Customers Say</h2>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="testimonial-item text-center">
+                        <p>"PropertEase made my home buying experience a breeze. Highly recommended!"</p>
+                        <p class="testimonial-author">- John Doe</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonial-item text-center">
+                        <p>"I found my dream home thanks to PropertEase. The platform is user-friendly and efficient."</p>
+                        <p class="testimonial-author">- Jane Smith</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/main.js"></script>
