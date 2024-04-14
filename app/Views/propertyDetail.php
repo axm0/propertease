@@ -6,8 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Details - PropertEase</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="padding-top: 56px;">
 <div class="container my-5">
@@ -19,10 +17,13 @@
                 <div class="carousel-inner">
                     <?php
                     foreach ($images as $index => $image) {
-                        $active = $index === 0 ? 'active' : '';
-                        echo '<div class="carousel-item ' . $active . '">';
-                        echo '<img src="/images/' . $property['PropertyID'] . '/' . basename($image) . '" alt="Property Image" class="d-block w-100">';
-                        echo '</div>';
+                        if ($index == 0) {
+                            echo '<div class="carousel-item active">';
+                        } else {
+                            echo '<div class="carousel-item">';
+                        }
+                          echo '<img class="d-block w-100" src="/images/' . $property['PropertyID'] . '/' . basename($image) . '" alt="Property Image">
+                        </div>';
                     }
                     ?>
                 </div>
@@ -59,7 +60,6 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>
