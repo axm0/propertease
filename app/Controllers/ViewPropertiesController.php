@@ -15,10 +15,10 @@ class ViewPropertiesController extends Controller {
     }
 
     private function getAllProperties() {
-        $sql = "SELECT p.PropertyURL, p.PropertyID, pr.Address, pr.Description
-            FROM Photos p
-            JOIN Property pr ON p.PropertyID = pr.PropertyID
-            ORDER BY p.PropertyID";
+        $sql = "SELECT p.PropertyURL, pr.PropertyID, pr.Address, pr.Description
+                FROM Property pr
+                LEFT JOIN Photos p ON pr.PropertyID = p.PropertyID
+                ORDER BY pr.PropertyID";
         $result = $this->db->query($sql);
         $images = [];
         if ($result->num_rows > 0) {
