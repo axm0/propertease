@@ -1,85 +1,46 @@
 <!-- app/Views/viewProperties.php -->
 <?php
-    require_once 'navbar.php';
+require_once 'navbar.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/myProperties.css">
-    <title>View Properties</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>All Properties</title>
 </head>
+
 <body>
-
 <div class="header">
-    <h1 class="title">View Properties</h1>
+    <h1 class="title">All Properties</h1>
 </div>
 
-<div class="property-container">
-    <div class="box">
-        <a href="page1.html"> <!-- goes to property listing -->
-            <img src="https://via.placeholder.com/300x180" alt="Box 1">
-            <p>Listing 1</p>
-        </a>
-    </div>
-    <div class="box">
-        <a href="page2.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 2">
-            <p>Listing 2</p>
-        </a>
-    </div>
-    <div class="box">
-        <a href="page3.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 3">
-            <p>Listing 3</p>
-        </a>
-    </div>
-</div>
-
-<div class="property-container">
-    <div class="box">
-        <a href="page4.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 4">
-            <p>Listing 4</p>
-        </a>
-    </div>
-    <div class="box">
-        <a href="page5.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 5">
-            <p>Listing 5</p>
-        </a>
-    </div>
-    <div class="box">
-        <a href="page6.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 6">
-            <p>Listing 6</p>
-        </a>
+<div class="container">
+    <div class="row">
+        <?php
+        foreach ($images as $propertyID => $data):
+            $address = strlen($data['address']) > 30 ? substr($data['address'], 0, 27) . '...' : $data['address'];
+            $description = strlen($data['description']) > 100 ? substr($data['description'], 0, 97) . '...' : $data['description'];
+            ?>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="/images/<?= $propertyID ?>/<?= basename($data['images'][0]) ?>" alt="Property <?= $propertyID ?>" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($address) ?></h5>
+                        <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"><?= htmlspecialchars($description) ?></p>
+                        <a href="/propertease/public/property/<?= $propertyID ?>" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
-
-<div class="property-container">
-    <div class="box">
-        <a href="page7.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 7">
-            <p>Listing 7</p>
-        </a>
-    </div>
-    <div class="box">
-        <a href="page8.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 8">
-            <p>Listing 8</p>
-        </a>
-    </div>
-    <div class="box">
-        <a href="page9.html">
-            <img src="https://via.placeholder.com/300x180" alt="Box 9">
-            <p>Listing 9</p>
-        </a>
-    </div>
-</div>
-
 </body>
+
 </html>
