@@ -6,9 +6,9 @@ require_once __DIR__ . '/../app/Controllers/ProfileController.php';
 require_once __DIR__ . '/../app/Controllers/ViewPropertiesController.php';
 require_once __DIR__ . '/../app/Controllers/MyPropertiesController.php';
 require_once __DIR__ . '/../app/Controllers/FavoritesController.php';
-require_once __DIR__ . '/../app/Controllers/PropertyController.php'; // Add this line
+require_once __DIR__ . '/../app/Controllers/PropertyController.php';
 require_once __DIR__ . '/../app/Controllers/EditPropertyController.php';
-
+require_once __DIR__ . '/../app/Controllers/LoginController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
@@ -41,6 +41,10 @@ switch ($path) {
         break;
     case $url . 'login':
         require_once __DIR__ . '/../app/Views/login.php';
+        break;
+    case $url . 'login/login':
+        $controller = new LoginController();
+        $controller->Login();
         break;
     // Add this case for property detail route
     case preg_match('/^\/propertease\/public\/property\/(\d+)$/', $path, $matches) ? $path : false:
