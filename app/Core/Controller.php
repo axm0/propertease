@@ -6,6 +6,8 @@ if (file_exists(__DIR__ . '/../../config/config.php')) {
     die('Failed to load configuration file');
 }
 
+session_save_path(__DIR__ . '/../../session_data');
+
 class Controller {
     protected $db;
 
