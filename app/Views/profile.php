@@ -19,18 +19,10 @@
         </div>
         <div class="col-3">
             <div class="row pt-5">
-                <label for="firstName" class="text">Name</label>
+                <label for="firstName" class="text"><?= $user['Name'] ?></label>
             </div>
             <div class="row">
-                <div class="col">
-                    <a href="#" class="button">Button 1</a>
-                </div>
-                <div class="col">
-                    <a href="#" class="button">Button 2</a>
-                </div>
-                <div class="col">
-                    <a href="#" class="button">Button 3</a>
-                </div>
+                <a id="editProfileBtn" class="btn btn-secondary rounded-pill" style="width:6rem;" href="#">Edit Profile</a>
             </div>
         </div>
     </div>
@@ -103,5 +95,75 @@
         </div>
     </div>
 </div>
+<!--Edit Profile Modal-->
+<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="my-1">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter new name">
+                        <label for="email" class="my-1">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="Enter new email">
+                        <label for="phone" class="my-1">Phone</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Enter new phone">
+                        <label for="user_type" class="my-1">User Type</label>
+                        <select class="form-control" id="user_type">
+                            <option value="buyer">Buyer</option>
+                            <option value="seller">Seller</option>
+                            <option value="agent">Agent</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    document.getElementById('name').value = '<?php echo $user['Name']; ?>';
+    document.getElementById('email').value = '<?php echo $user['Email']; ?>';
+    document.getElementById('phone').value = '<?php echo $user['Phone_no']; ?>';
+    document.getElementById('user_type').value = '<?php echo $user['User_type']; ?>';
+
+    document.getElementById('editProfileBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        var modal = document.getElementById('editProfileModal');
+        modal.classList.add('show');
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+    });
+
+    // Close the modal when the close button is clicked
+    document.querySelector('.modal .close').addEventListener('click', function() {
+        var modal = document.getElementById('editProfileModal');
+        modal.classList.remove('show');
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+    });
+
+    // Close the modal when clicked outside of it
+    window.addEventListener('click', function(e) {
+        var modal = document.getElementById('editProfileModal');
+        if (e.target == modal) {
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+    });
+</script>
 </html>

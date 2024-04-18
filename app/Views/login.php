@@ -10,13 +10,13 @@
 <body class="text-center">
 <!-- Centering wrapper start -->
 <div class="d-flex justify-content-center align-items-center vh-100">
-    <form id="signin-form" class="form-signin">
+    <form id="signin-form" class="form-signin" method="post">
         <span class="h1 mb-3 font-weight-normal">PropertEase</span>
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
@@ -75,7 +75,7 @@
 </div>
 <!-- Centering wrapper end -->
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
@@ -117,6 +117,21 @@
                 event.preventDefault();
             }
         });
+
+        $('#signin-form').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            console.log(formData);
+
+            $.ajax({
+                type: 'POST',
+                url: '/propertease/public/login/login',
+                data: formData,
+            }).done(function() {
+                window.location.href = 'home';
+            });
+        });
+
     });
 </script>
 </body>
