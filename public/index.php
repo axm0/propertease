@@ -6,7 +6,8 @@ require_once __DIR__ . '/../app/Controllers/ProfileController.php';
 require_once __DIR__ . '/../app/Controllers/ViewPropertiesController.php';
 require_once __DIR__ . '/../app/Controllers/MyPropertiesController.php';
 require_once __DIR__ . '/../app/Controllers/FavoritesController.php';
-require_once __DIR__ . '/../app/Controllers/PropertyController.php'; // Add this line
+require_once __DIR__ . '/../app/Controllers/PropertyController.php';
+require_once __DIR__ . '/../app/Controllers/EditPropertyController.php';
 require_once __DIR__ . '/../app/Controllers/LoginController.php';
 
 $path = $_SERVER['REQUEST_URI'];
@@ -50,6 +51,9 @@ switch ($path) {
         $controller = new PropertyController();
         $controller->detail($matches[1]);
         break;
+    case preg_match('/^\/propertease\/public\/property\/edit\/(\d+)$/', $path, $matches) ? $path : false:
+        $controller = new EditPropertyController();
+        $controller->detail($matches[1]);
     default:
         $controller = new HomeController();
         $controller->index();
