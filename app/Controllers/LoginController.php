@@ -21,9 +21,11 @@ class LoginController extends Controller {
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $userID = $row['UserID'];
+                $user_name = $row['Name'];
 
                 $_SESSION['userID'] = $userID;
                 $_SESSION['email'] = $email;
+                $_SESSION['user_name'] = $user_name;
                 session_write_close();
 
                 echo "Success";
