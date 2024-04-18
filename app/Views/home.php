@@ -1,4 +1,12 @@
+<?php
+if (!isset($_SESSION['user_name'])) {
+    // Optionally redirect to login or do other handling
+    // header('Location: /login.php');
+    // exit();
+}
+?>
 <!DOCTYPE html>
+
 <!-- app/Views/home.php -->
 <html lang="en">
 <head>
@@ -185,7 +193,6 @@
         </div>
     </div>
 </section>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/main.js"></script>
 </body>

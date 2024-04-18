@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION['user_name'])) {
+    // Optionally redirect to login or do other handling
+    // header('Location: /login.php');
+    // exit();
+}
+?>
 <!-- app/Views/viewProperties.php -->
 <?php
 require_once 'navbar.php';
