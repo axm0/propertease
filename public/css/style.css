@@ -78,3 +78,15 @@ img {
         padding: 10px;
     }
 }
+
+.heart{
+    margin: 0;
+    padding: 0px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.heart i:hover{
+    cursor: pointer;
+}
