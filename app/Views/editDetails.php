@@ -43,31 +43,56 @@
             <h3>Property Details</h3>
             <form action="/propertease/public/property/edit/<?= $property['PropertyID'] ?>" method="POST">
                 <p><strong><label for="address">Address:</label></strong>
-                    <input type="text" id="address" name="address" value="<?= ($property['Address']) ?>"><br></p>
+                    <input type="text" id="address" name="address" class="form-control" value="<?= ($property['Address']) ?>"><br></p>
                 <p><strong><label for="state">State:</label></strong>
-                    <input type="text" id="state" name="state" value="<?= ($property['State']) ?>"><br></p>
+                    <input type="text" id="state" name="state" class="form-control" value="<?= ($property['State']) ?>"><br></p>
                 <p><strong><label for="zipcode">Zip Code:</label></strong>
-                    <input type="text" id="zipcode" name="zipcode" value="<?= ($property['ZipCode']) ?>"><br></p>
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="<?= ($property['ZipCode']) ?>"><br></p>
                 <p><strong><label for="propertytype">Property Type:</label></strong>
-                    <input type="text" id="propertytype" name="propertytype" value="<?= ($property['PropertyType']) ?>"><br></p>
+                    <input type="text" id="propertytype" name="propertytype" class="form-control" value="<?= ($property['PropertyType']) ?>"><br></p>
                 <p><strong><label for="size">Size:</label></strong>
-                    <input type="text" id="size" name="size" value="<?= ($property['Size']) ?>"><br></p>
+                    <input type="text" id="size" name="size" class="form-control" value="<?= ($property['Size']) ?>"><br></p>
                 <p><strong><label for="bedrooms">Bedrooms:</label></strong>
-                    <input type="text" id="bedrooms" name="bedrooms" value="<?= ($property['NumberBedrooms']) ?>"><br></p>
+                    <input type="text" id="bedrooms" name="bedrooms" class="form-control" value="<?= ($property['NumberBedrooms']) ?>"><br></p>
                 <p><strong><label for="bathrooms">Bathrooms:</label></strong>
-                    <input type="text" id="bathrooms" name="bathrooms" value="<?= ($property['NumberBathrooms']) ?>"><br></p>
+                    <input type="text" id="bathrooms" name="bathrooms" class="form-control" value="<?= ($property['NumberBathrooms']) ?>"><br></p>
                 <p><strong><label for="price">Price:</label></strong>
-                    <input type="text" id="price" name="price" value="<?= number_format($property['Price']) ?>"><br></p>
+                    <input type="text" id="price" name="price" class="form-control" value="<?= number_format($property['Price']) ?>"><br></p>
                 <p><strong><label for="listingstatus">ListingStatus:</label></strong>
-                    <input type="text" id="listingstatus" name="listingstatus" value="<?= ($property['ListingStatus']) ?>"><br></p>
+                    <input type="text" id="listingstatus" name="listingstatus" class="form-control" value="<?= ($property['ListingStatus']) ?>"><br></p>
                 <div class="row mt-4">
                     <div class="col">
                         <h3>Description</h3>
-                        <p><textarea id="description" name="description" rows="4" cols="50"><?= $property['Description'] ?></textarea><br></p>
+                        <p><textarea id="description" name="description" class="form-control" rows="4" cols="45"><?= $property['Description'] ?></textarea><br></p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete</button>
+                <button type="submit" class="btn btn-primary float-right">Save changes</button>
+                <a href="/propertease/public/myProperties" class="btn btn-link float-right">Cancel</a>
             </form>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><strong>Confirm Deletion</strong></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            You have selected to delete this property.
+                            If this was the action that you intended, please confirm your choice, or click cancel.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger">Yes, delete it</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
