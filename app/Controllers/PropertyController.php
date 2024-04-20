@@ -6,8 +6,9 @@ class PropertyController extends Controller {
     public function detail($propertyID) {
         $propertyData = $this->getPropertyDetails($propertyID);
         $propertyImages = $this->getPropertyImages($propertyID);
+        $favoriteData = $this->getFavoriteData($propertyID);
         if ($propertyData) {
-            $this->view('propertyDetail', ['property' => $propertyData, 'images' => $propertyImages]);
+            $this->view('propertyDetail', ['property' => $propertyData, 'images' => $propertyImages, 'favorite' => $favoriteData]);
         } else {
             die("Property not found");
         }
@@ -37,6 +38,17 @@ class PropertyController extends Controller {
             $images[] = $row['PropertyURL'];
         }
         return $images;
+    }
+    private function getFavoriteData($propertyID){
+        if(session_status() != 1)
+            @$userID = $_SESSION['userID'];
+        else
+            $userID = 0;
+        $sql = "SELECT f.LikeID
+                FROM Favorites f
+                WHERE f.PropertyID = '".$propertyID."' AND UserID = '".$userID."'";
+        $result = $this->db->query($sql);
+        return $result->fetch_assoc();
     }
 }
 ?>

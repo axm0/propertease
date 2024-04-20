@@ -1,7 +1,6 @@
 <?php
 // public/index.php
 require_once __DIR__ . '/../app/Controllers/HomeController.php';
-require_once __DIR__ . '/../app/Controllers/AboutController.php';
 require_once __DIR__ . '/../app/Controllers/ProfileController.php';
 require_once __DIR__ . '/../app/Controllers/ViewPropertiesController.php';
 require_once __DIR__ . '/../app/Controllers/MyPropertiesController.php';
@@ -12,16 +11,19 @@ require_once __DIR__ . '/../app/Controllers/LoginController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
+// Remove the query string from the path for routing
+$path = strtok($path, '?');
+
 $url = '/propertease/public/';
 
 switch ($path) {
-    case $url . 'about':
-        $controller = new AboutController();
-        $controller->index();
-        break;
     case $url . 'home':
         $controller = new HomeController();
         $controller->index();
+        break;
+    case $url . 'search':
+        $controller = new ViewPropertiesController();
+        $controller->search();
         break;
     case $url . 'profile':
         $controller = new ProfileController();
@@ -46,7 +48,14 @@ switch ($path) {
         $controller = new LoginController();
         $controller->Login();
         break;
-    // Add this case for property detail route
+    case $url . 'logout':
+        $controller = new LoginController();
+        $controller->Logout();
+        break;
+    case $url . 'profile/save':
+        $controller = new ProfileController();
+        $controller->save();
+        break;
     case preg_match('/^\/propertease\/public\/property\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new PropertyController();
         $controller->detail($matches[1]);
@@ -54,8 +63,11 @@ switch ($path) {
     case preg_match('/^\/propertease\/public\/property\/edit\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new EditPropertyController();
         $controller->detail($matches[1]);
+        break;
     default:
         $controller = new HomeController();
         $controller->index();
         break;
 }
+
+?>
