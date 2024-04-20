@@ -24,7 +24,9 @@
                 <li class="nav-item"><a href="/propertease/public/viewProperties" class="nav-link">All Properties</a></li>
                 <?php if (isset($_SESSION['userID'])): ?>
                     <li class="nav-item"><a href="/propertease/public/favorites" class="nav-link">My Favorites</a></li>
+                <?php if(strtolower($_SESSION['user_type']) == "seller"): ?>
                     <li class="nav-item"><a href="/propertease/public/myProperties" class="nav-link">My Properties</a></li>
+                <?php endif; ?>
                     <li class="nav-item"><a href="/propertease/public/profile" class="nav-link">Profile</a></li>
                     <li class="nav-item"><a href="/propertease/public/logout" class="nav-link">Logout</a></li>
                 <?php else: ?>

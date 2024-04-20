@@ -64,7 +64,7 @@ switch ($path) {
         $controller->save();
         break;
     case $url . 'create':
-        if (strtolower($_SESSION['user_type']) != "buyer") {
+        if (strtolower($_SESSION['user_type']) == "seller") {
             $controller = new CreatePropertyController();
             $controller->create();
         } else {
@@ -73,7 +73,7 @@ switch ($path) {
         }
         break;
     case $url . 'createProperty':
-        if (strtolower($_SESSION['user_type']) != "buyer") {
+        if (strtolower($_SESSION['user_type']) == "seller") {
             $controller = new CreatePropertyController();
             $controller->createProperty();
         } else {
