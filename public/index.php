@@ -53,7 +53,8 @@ switch ($path) {
         $controller->Logout();
         break;
     case $url . 'signup':
-        require_once __DIR__ . '/../app/Views/signup.php';
+        $controller = new LoginController();
+        $controller->Signup();
         break;
     case $url . 'profile/save':
         $controller = new ProfileController();
