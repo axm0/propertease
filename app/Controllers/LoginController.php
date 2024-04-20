@@ -36,5 +36,16 @@ class LoginController extends Controller {
         echo "Invalid request method";
         exit();
     }
+
+    public function Logout() {
+        session_start();
+
+        $_SESSION = array();
+
+        session_destroy();
+
+        header("Location: /propertease/public/");
+        exit();
+    }
 }
 ?>
