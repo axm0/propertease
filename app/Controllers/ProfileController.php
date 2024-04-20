@@ -2,11 +2,12 @@
 
 require_once __DIR__ . '/../Core/Controller.php';
 
-
 class ProfileController extends Controller {
 
     public function index() {
-        //session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $userID = $_SESSION['userID'];
         $userData = $this->getUserDetails($userID);
         $favorites = $this->getFavoriteProperties($userID);
@@ -18,10 +19,10 @@ class ProfileController extends Controller {
     }
 
     public function save() {
-        //session_start();
-
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $userID = $_SESSION['userID'];
-        $password = $_SESSION['password'];
 
         parse_str(file_get_contents("php://input"), $formData);
         $name = $formData['name'];
@@ -37,12 +38,17 @@ class ProfileController extends Controller {
                     WHERE userID = ? AND password = ?";
             $stmt = $this->db->prepare($sql);
             $stmt->bind_param("ssssis", $name, $email, $phone, $user_type, $userID, $input_password);
-            $stmt->execute();
 
-            $_SESSION['email'] = $email;
-
-            echo "Updated user details";
-            exit();
+            if ($stmt->execute()) {
+                $_SESSION['email'] = $email;
+                $_SESSION['user_name'] = $name;
+                session_write_close();
+                echo "Updated user details";
+                exit();
+            } else {
+                echo "Failed to update user details";
+                exit();
+            }
         }
 
         http_response_code(405); // Method Not Allowed
