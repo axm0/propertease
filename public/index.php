@@ -8,6 +8,9 @@ require_once __DIR__ . '/../app/Controllers/FavoritesController.php';
 require_once __DIR__ . '/../app/Controllers/PropertyController.php';
 require_once __DIR__ . '/../app/Controllers/EditPropertyController.php';
 require_once __DIR__ . '/../app/Controllers/LoginController.php';
+require_once __DIR__ . '/../app/Controllers/CreatePropertyController.php';
+require_once __DIR__ . '/../app/Controllers/DeletePropertyController.php';
+
 
 $path = $_SERVER['REQUEST_URI'];
 
@@ -59,6 +62,15 @@ switch ($path) {
         $controller = new ProfileController();
         $controller->save();
         break;
+    case $url . 'create':
+        $controller = new CreatePropertyController();
+        $controller->create();
+        break;
+    case $url . 'createProperty':
+        $controller = new CreatePropertyController();
+        $controller->createProperty();
+        break;
+    // Add this case for property detail route
     case preg_match('/^\/propertease\/public\/property\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new PropertyController();
         $controller->detail($matches[1]);
@@ -66,6 +78,10 @@ switch ($path) {
     case preg_match('/^\/propertease\/public\/property\/edit\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new EditPropertyController();
         $controller->detail($matches[1]);
+        break;
+    case preg_match('/^\/propertease\/public\/property\/delete\/(\d+)$/', $path, $matches) ? $path : false:
+        $controller = new DeletePropertyController();
+        $controller->delete($matches[1]);
         break;
     default:
         $controller = new HomeController();
