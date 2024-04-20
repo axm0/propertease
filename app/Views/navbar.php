@@ -16,20 +16,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <form class="form-inline my-2 my-lg-0" action="/propertease/public/search" method="get">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search Properties" aria-label="Search" name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/propertease/public/viewProperties" class="nav-link">All Properties</a></li>
                 <?php if (isset($_SESSION['userID'])): ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php echo $_SESSION['user_name']; ?>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="/propertease/public/profile">Profile</a>
-                            <a class="dropdown-item" href="/propertease/public/logout">Logout</a>
-                            <a class="dropdown-item" href="/propertease/public/favorites">My Favorites</a>
-                            <a class="dropdown-item" href="/propertease/public/myProperties">My Properties</a>
-                        </div>
-                    </li>
+                    <li class="nav-item"><a href="/propertease/public/favorites" class="nav-link">My Favorites</a></li>
+                    <li class="nav-item"><a href="/propertease/public/myProperties" class="nav-link">My Properties</a></li>
+                    <li class="nav-item"><a href="/propertease/public/profile" class="nav-link">Profile</a></li>
+                    <li class="nav-item"><a href="/propertease/public/logout" class="nav-link">Logout</a></li>
                 <?php else: ?>
                     <li class="nav-item">
                         <a href="/propertease/public/login" class="nav-link">Login/Sign-Up</a>

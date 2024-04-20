@@ -105,10 +105,10 @@ if (!isset($_SESSION['user_name'])) {
             <div class="col-md-8 text-center">
                 <h1 class="display-4">PropertEase</h1>
                 <p class="lead">Discover the perfect property.</p>
-                <form>
+                <form action="/propertease/public/search" method="GET">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter location or ZIP code">
-                        <button class="btn btn-primary" type="button">Search</button>
+                        <input type="text" class="form-control" name="query" placeholder="Enter location or ZIP code">
+                        <button class="btn btn-primary" type="submit">Search</button>
                     </div>
                 </form>
             </div>

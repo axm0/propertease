@@ -1,7 +1,6 @@
 <?php
 // public/index.php
 require_once __DIR__ . '/../app/Controllers/HomeController.php';
-require_once __DIR__ . '/../app/Controllers/AboutController.php';
 require_once __DIR__ . '/../app/Controllers/ProfileController.php';
 require_once __DIR__ . '/../app/Controllers/ViewPropertiesController.php';
 require_once __DIR__ . '/../app/Controllers/MyPropertiesController.php';
@@ -15,16 +14,19 @@ require_once __DIR__ . '/../app/Controllers/DeletePropertyController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
+// Remove the query string from the path for routing
+$path = strtok($path, '?');
+
 $url = '/propertease/public/';
 
 switch ($path) {
-    case $url . 'about':
-        $controller = new AboutController();
-        $controller->index();
-        break;
     case $url . 'home':
         $controller = new HomeController();
         $controller->index();
+        break;
+    case $url . 'search':
+        $controller = new ViewPropertiesController();
+        $controller->search();
         break;
     case $url . 'profile':
         $controller = new ProfileController();
@@ -53,6 +55,9 @@ switch ($path) {
         $controller = new LoginController();
         $controller->Logout();
         break;
+    case $url . 'signup':
+        require_once __DIR__ . '/../app/Views/signup.php';
+        break;
     case $url . 'profile/save':
         $controller = new ProfileController();
         $controller->save();
@@ -73,6 +78,7 @@ switch ($path) {
     case preg_match('/^\/propertease\/public\/property\/edit\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new EditPropertyController();
         $controller->detail($matches[1]);
+        break;
     case preg_match('/^\/propertease\/public\/property\/delete\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new DeletePropertyController();
         $controller->delete($matches[1]);
@@ -82,3 +88,5 @@ switch ($path) {
         $controller->index();
         break;
 }
+
+?>
