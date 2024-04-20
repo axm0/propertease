@@ -64,12 +64,22 @@ switch ($path) {
         $controller->save();
         break;
     case $url . 'create':
-        $controller = new CreatePropertyController();
-        $controller->create();
+        if (strtolower($_SESSION['user_type']) != "buyer") {
+            $controller = new CreatePropertyController();
+            $controller->create();
+        } else {
+            $controller = new HomeController();
+            $controller->index();
+        }
         break;
     case $url . 'createProperty':
-        $controller = new CreatePropertyController();
-        $controller->createProperty();
+        if (strtolower($_SESSION['user_type']) != "buyer") {
+            $controller = new CreatePropertyController();
+            $controller->createProperty();
+        } else {
+            $controller = new HomeController();
+            $controller->index();
+        }
         break;
     // Add this case for property detail route
     case preg_match('/^\/propertease\/public\/property\/(\d+)$/', $path, $matches) ? $path : false:
