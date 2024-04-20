@@ -23,9 +23,11 @@ if (!isset($_SESSION['user_name'])) {
 </head>
 <body>
 
-<div class="header">
-    <h1 class="title">My Properties</h1>
+<div class="header d-flex justify-content-center align-items-center">
+    <h1 class="title d-inline-block">My Properties</h1>
+    <a href="/propertease/public/create" class="btn btn-light ml-3">+ Add New</a>
 </div>
+
 
 <div class="container">
     <div class="row">

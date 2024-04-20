@@ -58,7 +58,7 @@
                     <input type="text" id="bathrooms" name="bathrooms" class="form-control" value="<?= ($property['NumberBathrooms']) ?>"><br></p>
                 <p><strong><label for="price">Price:</label></strong>
                     <input type="text" id="price" name="price" class="form-control" value="<?= number_format($property['Price']) ?>"><br></p>
-                <p><strong><label for="listingstatus">ListingStatus:</label></strong>
+                <p><strong><label for="listingstatus">Listing Status:</label></strong>
                     <input type="text" id="listingstatus" name="listingstatus" class="form-control" value="<?= ($property['ListingStatus']) ?>"><br></p>
                 <div class="row mt-4">
                     <div class="col">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-danger">Yes, delete it</button>
+                            <a type="button" class="btn btn-danger" href="/propertease/public/property/delete/<?= $property['PropertyID'] ?>">Yes, delete it</a>
                         </div>
                     </div>
                 </div>
