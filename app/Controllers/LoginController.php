@@ -37,49 +37,6 @@ class LoginController extends Controller {
         exit();
     }
 
-    public function Signup() {
-        session_start();
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Parse the incoming data
-            parse_str(file_get_contents("php://input"), $formData);
-            $name = $formData['name'];
-            $email = $formData['email'];
-            $password = $formData['password'];
-            $phone_no = $formData['phone_no']; // Assuming it's optional
-            $user_type = $formData['user_type'];
-
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-            $sql = "INSERT INTO User (Name, Email, Password, Phone_no, User_type) VALUES (?, ?, ?, ?, ?)";
-
-            if ($stmt = $this->db->prepare($sql)) {
-                $stmt->bind_param("sssss", $name, $email, $passwordHash, $phone_no, $user_type);
-
-                // Execute the query
-                if ($stmt->execute()) {
-                    echo "Signup successful";
-                    exit();
-                } else {
-                    if ($this->db->errno == 1062) {
-                        echo "Email or username already exists.";
-                    } else {
-                        echo "Error: " . $this->db->error;
-                    }
-                    exit();
-                }
-            } else {
-                echo "Database preparation error: " . $this->db->error;
-                exit();
-            }
-        } else {
-            http_response_code(405);
-            echo "Invalid request method";
-            exit();
-        }
-    }
-
-
     public function Logout() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
