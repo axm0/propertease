@@ -7,6 +7,7 @@ if (file_exists(__DIR__ . '/../../config/config.php')) {
 }
 
 session_save_path(__DIR__ . '/../../session_data');
+session_start();
 
 class Controller {
     protected $db;
