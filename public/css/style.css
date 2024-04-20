@@ -84,7 +84,7 @@ img {
     padding: 0px;
     background: transparent;
     border: none;
-    outline: none;
+    outline: none !important;
 }
 
 .heart i:hover{
