@@ -12,11 +12,37 @@ if (!isset($_SESSION['user_name'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/03397d1206.js" crossorigin="anonymous"></script>
     <title>Property Details - PropertEase</title>
 </head>
 <body style="padding-top: 56px;">
+<?php
+    if($favorite !== null) {
+        $color = "red";
+    }
+    else
+        $color = "grey";
+    ?>
 <div class="container my-5">
-    <h1><?= $property['Address'] ?></h1>
+    <h1><?= $property['Address'] ?>
+        <button id="btnh" class="heart" style="color:<?= $color ?>; font-size:35px">
+            <script>
+                document.getElementById("btnh").addEventListener("click", function()
+                    <?php if(isset($_SESSION['user_name'])){ ?>{
+                    if(this.style.color === "grey"){
+                        this.style.color = "red"
+                    }
+                    else
+                        this.style.color = "grey"
+                }<?php }
+                    else { ?>{
+                    window.location = '/propertease/public/login';
+                }
+                <?php } ?>)
+            </script>
+            <i class="fas fa-heart"></i>
+        </button>
+    </h1>
     <div class="row">
         <div class="col-md-8">
             <!-- Property Images Carousel -->
@@ -29,7 +55,7 @@ if (!isset($_SESSION['user_name'])) {
                         } else {
                             echo '<div class="carousel-item">';
                         }
-                          echo '<img class="d-block w-100" src="/images/' . $property['PropertyID'] . '/' . basename($image) . '" alt="Property Image">
+                        echo '<img class="d-block w-100" src="/images/' . $property['PropertyID'] . '/' . basename($image) . '" alt="Property Image">
                         </div>';
                     }
                     ?>
