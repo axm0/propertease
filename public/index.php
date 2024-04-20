@@ -46,6 +46,14 @@ switch ($path) {
         $controller = new LoginController();
         $controller->Login();
         break;
+    case $url . 'logout':
+        $controller = new LoginController();
+        $controller->Logout();
+        break;
+    case $url . 'profile/save':
+        $controller = new ProfileController();
+        $controller->save();
+        break;
     // Add this case for property detail route
     case preg_match('/^\/propertease\/public\/property\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new PropertyController();

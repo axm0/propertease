@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_name'])) {
-    // Optionally redirect to login or do other handling
-    // header('Location: /login.php');
-    // exit();
-}
-?>
 <!DOCTYPE html>
 <!--app/Views/navbar.php-->
 <html lang="en">

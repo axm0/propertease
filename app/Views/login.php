@@ -121,7 +121,6 @@
         $('#signin-form').submit(function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
-            console.log(formData);
 
             $.ajax({
                 type: 'POST',
