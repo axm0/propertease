@@ -73,8 +73,8 @@ class ProfileController extends Controller {
                 JOIN Favorites f ON p.PropertyID = f.PropertyID
                 LEFT JOIN Photos ph ON p.PropertyID = ph.PropertyID
                 WHERE f.UserID = ?
-                ORDER BY p.price DESC;
-                ";
+                ORDER BY p.price DESC
+                LIMIT 3;";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $userID);
         $stmt->execute();
@@ -92,7 +92,8 @@ class ProfileController extends Controller {
                 JOIN Owns o ON p.PropertyID = o.PropertyID
                 LEFT JOIN Photos ph ON p.PropertyID = ph.PropertyID
                 WHERE o.UserID = ?
-                ORDER BY p.price DESC;
+                ORDER BY p.price DESC
+                LIMIT 3;
                 ";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $userID);

@@ -29,46 +29,43 @@
         </div>
         <div class="row pt-3">
         <?php
-        foreach ($favorites as $index => $favorite) {
-            echo '
-            <div class="col-4 mx-3" style="width:300px;height:180px;">
-                <div class="box">
-                    <a href="/propertease/public/property/'. $favorite['PropertyID'] .'">
-                        <img style="width:300px;height:180px;" src="/images/' . $favorite['PropertyID'] . '/' . basename($favorite['PropertyURL']) . '" alt="Property Image">
-                        <label for="">$'. $favorite['Price'] .', '. $favorite['Description'] .'</label>
-                    </a>
+        foreach ($favorites as $index => $favorite): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="/images/<?=$favorite['PropertyID']?>/<?=basename($favorite['PropertyURL'])?>" alt="Property <?=$favorite['PropertyID']?>" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"><?=$favorite['Address']?></h5>
+                        <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">$<?=$favorite['Price']?>, <?= htmlspecialchars($favorite['Description']) ?></p>
+                        <a href="/propertease/public/property/<?= $favorite['PropertyID'] ?>" class="btn btn-primary">View Details</a>
+                    </div>
                 </div>
-            </div>';
-            if ($index == 3) {
-                break;
-            }
-        }
-        ?>
+            </div>
+        <?php endforeach; ?>
         </div>
     </div>
+    <?php if (strtolower($_SESSION['user_type']) != "buyer"): ?>
+
     <div id="properties" class="section-header my-5 py-5">
         <div class="row">
             <h2 class="pb-2 text">My Top 3 Properties<a class="btn btn-secondary rounded-pill mx-3" href="/propertease/public/myProperties">Edit</a></h2>
         </div>
         <div class="row pt-3">
             <?php
-            foreach ($topProperties as $index => $property) {
-                echo '
-            <div class="col-4 mx-3" style="width:300px;height:180px;">
-                <div class="box">
-                    <a href="/propertease/public/property/'. $property['PropertyID'] .'">
-                        <img style="width:300px;height:180px;" src="/images/' . $property['PropertyID'] . '/' . basename($property['PropertyURL']) . '" alt="Property Image">
-                        <label for="">$'. $property['Price'] .', '. $property['Description'] .'</label>
-                    </a>
+            foreach ($topProperties as $index => $property): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="/images/<?=$property['PropertyID']?>/<?=basename($property['PropertyURL'])?>" alt="Property <?=$property['PropertyID']?>" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$property['Address']?></h5>
+                            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">$<?=$property['Price']?>, <?= htmlspecialchars($property['Description']) ?></p>
+                            <a href="/propertease/public/property/<?= $property['PropertyID'] ?>" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
                 </div>
-            </div>';
-                if ($index == 3) {
-                    break;
-                }
-            }
-            ?>
+            <?php endforeach; ?>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 <!--Edit Profile Modal-->
 <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
