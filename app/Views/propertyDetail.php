@@ -81,15 +81,17 @@ if (!isset($_SESSION['user_name'])) {
         <div class="col-md-4">
             <!-- Property Details -->
             <h3>Property Details</h3>
-            <p><strong>Address:</strong> <?= $property['Address'] ?></p>
-            <p><strong>State:</strong> <?= $property['State'] ?></p>
-            <p><strong>Zip Code:</strong> <?= $property['ZipCode'] ?></p>
+            <p><strong>Address:</strong> <?= $property['Address'] ?>, <?= $property['County'] ?>, <?= $property['State'] ?>, <?= $property['ZipCode'] ?></p>
             <p><strong>Property Type:</strong> <?= $property['PropertyType'] ?></p>
             <p><strong>Size:</strong> <?= $property['Size'] ?> sq.ft.</p>
             <p><strong>Bedrooms:</strong> <?= $property['NumberBedrooms'] ?></p>
             <p><strong>Bathrooms:</strong> <?= $property['NumberBathrooms'] ?></p>
             <p><strong>Price:</strong> $<?= number_format($property['Price']) ?></p>
+            <p><strong>Amenities:</strong> <?= $property['Features'] ?></p>
+            <p><strong>Year Built:</strong> <?= $property['YearBuilt'] ?></p>
+            <p><strong>Condition:</strong> <?= $property['Condition'] ?></p>
             <p><strong>Listing Status:</strong> <?= $property['ListingStatus'] ?></p>
+            <p><strong>Listing Date:</strong> <?= $property['ListingDate'] ?></p>
         </div>
     </div>
     <div class="row mt-4">

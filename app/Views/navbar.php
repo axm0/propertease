@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="padding-top: 56px;">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/propertease/public/home">PropertEase</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <form class="form-inline my-2 my-lg-0" action="/propertease/public/search" method="get">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search Properties" aria-label="Search" name="query">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
             </form>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/propertease/public/viewProperties" class="nav-link">All Properties</a></li>

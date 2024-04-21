@@ -18,7 +18,7 @@
                     <?php
                     if (empty($images)) {
                         // Placeholder image URL
-                        $placeholderImageURL = 'https://via.placeholder.com/300x180';
+                        $placeholderImageURL = 'https://placehold.co/300x180?text=Your+New+Home+Awaits!&font=roboto';
                         // Display placeholder image
                         echo '<div class="carousel-item active">';
                         echo '<img class="d-block w-100" src="' . $placeholderImageURL . '" alt="Placeholder Image">';
@@ -51,12 +51,20 @@
             <form action="/propertease/public/createProperty" method="POST" enctype="multipart/form-data">
                 <p><strong><label for="address">Address:</label></strong>
                     <input type="text" id="address" name="address" class="form-control" required><br></p>
+                <p><strong><label for="county">City:</label></strong>
+                    <input type="text" id="county" name="county" class="form-control" required><br></p>
                 <p><strong><label for="state">State:</label></strong>
-                    <input type="text" id="state" name="state" class="form-control" required"><br></p>
+                    <input type="text" id="state" name="state" class="form-control" required><br></p>
                 <p><strong><label for="zipcode">Zip Code:</label></strong>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control" required"><br></p>
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" required><br></p>
                 <p><strong><label for="propertytype">Property Type:</label></strong>
-                    <input type="text" id="propertytype" name="propertytype" class="form-control" required><br></p>
+                    <select id="propertytype" name="propertytype" class="form-control" required>
+                        <option value="House">House</option>
+                        <option value="Single Family">Single Family</option>
+                        <option value="Multi-Family">Multi-Family</option>
+                        <option value="Condo">Condo</option>
+                        <option value="Townhouse">Townhouse</option>
+                    </select><br></p>
                 <p><strong><label for="size">Size:</label></strong>
                     <input type="text" id="size" name="size" class="form-control" required><br></p>
                 <p><strong><label for="bedrooms">Bedrooms:</label></strong>
@@ -65,9 +73,27 @@
                     <input type="text" id="bathrooms" name="bathrooms" class="form-control" required><br></p>
                 <p><strong><label for="price">Price:</label></strong>
                     <input type="text" id="price" name="price" class="form-control" required><br></p>
+                <p><strong><label for="features">Amenities:</label></strong>
+                    <input type="text" id="features" name="features" class="form-control" required><br></p>
+                <p><strong><label for="yearbuilt">Year Built:</label></strong>
+                    <input type="text" id="yearbuilt" name="yearbuilt" class="form-control" required><br></p>
+                <p><strong><label for="condition">Condition:</label></strong>
+                    <select id="condition" name="condition" class="form-control" required>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Fixer-Upper">Fixer-Upper</option>
+                    </select><br></p>
                 <p><strong><label for="listingstatus">Listing Status:</label></strong>
-                    <input type="text" id="listingstatus" name="listingstatus" class="form-control" required><br></p>
-                <div class="form-group">
+                    <select id="listingstatus" name="listingstatus" class="form-control" required>
+                        <option value="For Sale">For Sale</option>
+                        <option value="Sold">Sold</option>
+                        <option value="Pending">Pending</option>
+                    </select><br></p>
+                <p><strong><label for="listingdate">Listing Date (today):</label></strong>
+                    <input type="text" id="listingdate" name="listingdate" value="<?= date('Y-m-d') ?>" class="form-control"></p>
+            <div class="form-group">
                     <label for="images">Property Images:</label>
                     <input type="file" id="images" name="images[]" multiple>
                 </div>
