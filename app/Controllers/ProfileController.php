@@ -42,6 +42,7 @@ class ProfileController extends Controller {
             if ($stmt->execute()) {
                 $_SESSION['email'] = $email;
                 $_SESSION['user_name'] = $name;
+                $_SESSION['user_type'] = $user_type;
                 session_write_close();
                 echo "Updated user details";
                 exit();

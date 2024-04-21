@@ -26,7 +26,9 @@ if (!isset($_SESSION['user_name'])) {
 
 <div class="header d-flex justify-content-center align-items-center">
     <h1 class="title d-inline-block">My Properties</h1>
+    <?php if (strtolower($_SESSION['user_type']) != "buyer"): ?>
     <a href="/propertease/public/create" class="btn btn-light ml-3">+ Add New</a>
+    <?php endif; ?>
 </div>
 
 

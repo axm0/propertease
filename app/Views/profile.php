@@ -16,8 +16,8 @@
             <img style="width: 150px; height: 150px;" src="/images/profile-circle-icon.png" alt="profile picture">
         </div>
         <div class="col-3 mx-5">
-            <div class="row pt-5">
-                <label for="firstName" class="text"><?= $user['Name'] ?></label>
+            <div class="row mt-5">
+                <label for="firstName" class="text"><?= $_SESSION['user_name']?>, <span style="color: #007bff"><?= ucwords(strtolower($_SESSION['user_type'])) ?></span></label>
             </div>
             <div class="row">
                 <a id="editProfileBtn" class="btn btn-secondary rounded-pill" style="width:6rem;" href="#">Edit Profile</a>
@@ -94,7 +94,6 @@
                         <select name="user_type" class="form-control" id="user_type">
                             <option value="buyer">Buyer</option>
                             <option value="seller">Seller</option>
-                            <option value="agent">Agent</option>
                         </select>
                         <label for="password" class="my-1">Password<span class="text-danger">*</span></label>
                         <input name="password" type="password" class="form-control" id="password" placeholder="Enter password" required>
