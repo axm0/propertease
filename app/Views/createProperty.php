@@ -13,7 +13,6 @@
     <h1>Create a New Property</h1>
     <div class="row">
         <div class="col-md-8">
-            <!-- Property Images Carousel -->
             <div id="propertyImagesCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php
@@ -48,7 +47,6 @@
             </div>
         </div>
         <div class="col-md-4">
-            <!-- Property Details -->
             <h3>Property Details</h3>
             <form action="/propertease/public/createProperty" method="POST" enctype="multipart/form-data">
                 <p><strong><label for="address">Address:</label></strong>

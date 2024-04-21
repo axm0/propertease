@@ -26,13 +26,11 @@ class CreatePropertyController extends Controller
 
             $newPropertyID = $this->insertProperty($newProperty);
 
-            // Create a directory for the property images
             $propertyImagesDir = __DIR__ . '/../../public/images/' . $newPropertyID;
             if (!is_dir($propertyImagesDir)) {
                 mkdir($propertyImagesDir, 0777, true);
             }
 
-            // Move the uploaded images to the property directory
             if (isset($_FILES['images'])) {
                 $images = $_FILES['images'];
                 foreach ($images['tmp_name'] as $index => $tmpName) {
