@@ -27,7 +27,7 @@
             <button id="signin-toggle-btn" class="btn btn-sm btn-outline-primary">Sign up instead</button>
             <button id="forgot-password-btn" class="btn btn-sm btn-outline-secondary">Forgot Password</button>
         </div>
-        <a href="/" class="text-primary mt-5">Back to Home</a>
+        <a href="/" class="back-to-home mt-5">Back to Home</a>
     </form>
 
     <form id="signup-form" class="form-signin" style="display: none;">
@@ -48,7 +48,7 @@
         <div class="mt-3">
             <button id="signup-toggle-btn" class="btn btn-sm btn-outline-primary">Sign in instead</button>
         </div>
-        <a href="/" class="text-primary mt-5">Back to Home</a>
+        <a href="/" class="back-to-home mt-5">Back to Home</a>
     </form>
 
     <form id="forgot-password-form" class="form-signin" style="display: none;">

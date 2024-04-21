@@ -1,7 +1,23 @@
 /* General Styles */
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lora', serif;
     background-color: #f5f5f5; /* Light grey background, good for login and other pages */
+}
+
+.btn-outline-primary {
+    color: #3D5A80;
+    background-color: #f5f5f5;
+    border-color: #3D5A80;
+}
+
+.btn-outline-primary:hover {
+    color: #f5f5f5;            /* Text color when hovering */
+    background-color: #3D5A80; /* Background color when hovering */
+    border-color: #f5f5f5; /* Border color when hovering */
+}
+
+.back-to-home {
+    color: #3D5A80 !important;
 }
 
 /* Navigation Bar */
@@ -10,8 +26,15 @@ body {
 }
 
 .navbar-brand {
+    font-family: 'Lora', serif;
+    font-weight: bold;
     color: white;
     margin-right: 25px; /* Increase space between logo and nav items */
+}
+
+.navbar-nav .nav-link  {
+    font-family: 'Lora', serif;
+    font-weight: bold;
 }
 
 .navbar-brand img {
@@ -40,10 +63,16 @@ body {
 }
 
 .form-signin .form-control {
+    font-family: 'Lora', serif;
     margin-bottom: 10px;
 }
 
+::placeholder {
+    font-family: 'Lora', serif; /* Specify Lora font for the placeholder */
+}
+
 .btn-primary {
+    font-family: 'Lora', serif !important;
     background-color: #3D5A80 !important;
     border-color: #3D5A80 !important;
 }
@@ -58,6 +87,15 @@ body {
     margin: 10px;
     padding: 20px;
     border-radius: 5px;
+}
+
+.card-title {
+    font-family: 'Lora', serif;
+    font-weight: bold;
+}
+
+.card-text {
+    font-family: 'Lora', serif;
 }
 
 /* Image styles */
@@ -89,4 +127,9 @@ img {
 
 .heart i:hover{
     cursor: pointer;
+}
+
+/*property details*/
+.description {
+    font-size: 20px;
 }
