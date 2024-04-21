@@ -21,7 +21,12 @@ class CreatePropertyController extends Controller
                 'bathrooms' => $_POST['bathrooms'],
                 'price' => $_POST['price'],
                 'listingstatus' => $_POST['listingstatus'],
-                'description' => $_POST['description']
+                'description' => $_POST['description'],
+                'county' => $_POST['county'],
+                'features' => $_POST['features'],
+                'yearbuilt' => $_POST['yearbuilt'],
+                'condition' => $_POST['condition'],
+                'listingdate' => $_POST['listingdate']
             ];
 
             $newPropertyID = $this->insertProperty($newProperty);
@@ -51,8 +56,8 @@ class CreatePropertyController extends Controller
             session_start();
         }
         $userID = $_SESSION['userID'];
-        $sqlProperty = "INSERT INTO Property (OwnerID, Address, State, ZipCode, PropertyType, Size, NumberBedrooms, NumberBathrooms, Price, ListingStatus, Description)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sqlProperty = "INSERT INTO Property (OwnerID, Address, State, ZipCode, PropertyType, Size, NumberBedrooms, NumberBathrooms, Price, ListingStatus, Description, County, Features, YearBuilt, `Condition`, ListingDate)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $address = $newProperty['address'];
         $state = $newProperty['state'];
@@ -64,10 +69,15 @@ class CreatePropertyController extends Controller
         $price = $newProperty['price'];
         $listingStatus = $newProperty['listingstatus'];
         $description = $newProperty['description'];
+        $county = $newProperty['county'];
+        $features = $newProperty['features'];
+        $yearbuilt = $newProperty['yearbuilt'];
+        $condition = $newProperty['condition'];
+        $listingdate = $newProperty['listingdate'];
 
         $stmtProperty = $this->db->prepare($sqlProperty);
-        $stmtProperty->bind_param("issisiiiiss", $userID, $address, $state, $zipCode, $propertyType,
-            $size, $numberBedrooms, $numberBathrooms, $price, $listingStatus, $description);
+        $stmtProperty->bind_param("issisiiiisssssss", $userID, $address, $state, $zipCode, $propertyType,
+            $size, $numberBedrooms, $numberBathrooms, $price, $listingStatus, $description, $county, $features, $yearbuilt, $condition, $listingdate);
         $stmtProperty->execute();
         $propertyID = $stmtProperty->insert_id;
 

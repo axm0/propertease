@@ -44,8 +44,8 @@ body {
 }
 
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #3D5A80 !important;
+    border-color: #3D5A80 !important;
 }
 
 /* Property Cards and Carousel */
