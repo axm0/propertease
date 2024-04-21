@@ -14,7 +14,7 @@ class FavoritesController extends Controller {
         $this->view('favorites', ['images' => $images]);
     }
 
-    protected function getFavoriteProperties() {
+    private function getFavoriteProperties() {
         $userID = $_SESSION['userID'];
         $sql = "SELECT p.PropertyURL, pr.PropertyID, pr.Address, pr.Description
                 FROM Property pr
@@ -33,5 +33,33 @@ class FavoritesController extends Controller {
             }
         }
         return $images;
+    }
+    public function updateFavorites($propertyID)
+    {
+        parse_str(file_get_contents("php://input"), $formData);
+        $action = $formData['action'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($action == "delete") {
+                $this->deleteFavorite($propertyID);
+            } else {
+                $this->insertFavorite($propertyID);
+            }
+        }
+    }
+
+    private function deleteFavorite($propertyID){
+        $sql = "DELETE FROM Favorites
+                WHERE PropertyID = ? AND UserID = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ii",$propertyID, $_SESSION['userID']);
+        $stmt->execute();
+    }
+
+    private function insertFavorite($propertyID){
+        $sql = "INSERT INTO Favorites (UserID, PropertyID)
+                VALUES (?, ?)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ii",$_SESSION['userID'], $propertyID);
+        $stmt->execute();
     }
 }

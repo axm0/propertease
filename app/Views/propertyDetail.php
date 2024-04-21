@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_name'])) {
 </head>
 <body style="padding-top: 56px;">
 <?php
-    if($favorite !== null) {
+    if($favorite) {
         $color = "red";
     }
     else
@@ -31,9 +31,17 @@ if (!isset($_SESSION['user_name'])) {
                     <?php if(isset($_SESSION['user_name'])){ ?>{
                     if(this.style.color === "grey"){
                         this.style.color = "red"
+                        var data = {"action":"insert"};
                     }
-                    else
+                    else {
                         this.style.color = "grey"
+                        data = {"action":"delete"};
+                    }
+                    $.ajax({
+                        type:'POST',
+                        url:"/propertease/public/property/favorite/<?= $property['PropertyID'] ?>",
+                        data:data,
+                    });
                 }<?php }
                     else { ?>{
                     window.location = '/propertease/public/login';
@@ -92,7 +100,7 @@ if (!isset($_SESSION['user_name'])) {
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -38,10 +38,18 @@ require_once 'navbar.php';
                                 <script>
                                     document.getElementById("btn<?= $propertyID ?>").addEventListener("click", function(){
                                         if(this.style.color === "grey"){
-                                            this.style.color = "red"
+                                            this.style.color = "red";
+                                            var data = {"action":"insert"}
                                         }
-                                        else
-                                            this.style.color = "grey"
+                                        else {
+                                            this.style.color = "grey";
+                                            var data = {"action": "delete"}
+                                        }
+                                        $.ajax({
+                                            type:'POST',
+                                            url:"/propertease/public/favorites/favorite/<?= $propertyID ?>",
+                                            data:data,
+                                        });
                                     })
                                 </script>
                                 <i class="fas fa-heart"></i>
@@ -56,4 +64,5 @@ require_once 'navbar.php';
     </div>
     </div>
     </body>
-    </html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</html>
