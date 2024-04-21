@@ -50,7 +50,7 @@
         <div class="col-md-4">
             <!-- Property Details -->
             <h3>Property Details</h3>
-            <form action="/propertease/public/createProperty" method="POST">
+            <form action="/propertease/public/createProperty" method="POST" enctype="multipart/form-data">
                 <p><strong><label for="address">Address:</label></strong>
                     <input type="text" id="address" name="address" class="form-control" required><br></p>
                 <p><strong><label for="state">State:</label></strong>
@@ -69,6 +69,10 @@
                     <input type="text" id="price" name="price" class="form-control" required><br></p>
                 <p><strong><label for="listingstatus">Listing Status:</label></strong>
                     <input type="text" id="listingstatus" name="listingstatus" class="form-control" required><br></p>
+                <div class="form-group">
+                    <label for="images">Property Images:</label>
+                    <input type="file" id="images" name="images[]" multiple>
+                </div>
                 <div class="row mt-4">
                     <div class="col">
                         <h3>Description</h3>
@@ -78,7 +82,6 @@
                 <button type="submit" class="btn btn-primary float-right">Create</button>
                 <a href="/propertease/public/myProperties" class="btn btn-link float-right">Cancel</a>
             </form>
-
         </div>
     </div>
 </div>
