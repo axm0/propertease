@@ -94,6 +94,14 @@ switch ($path) {
         $controller = new DeletePropertyController();
         $controller->delete($matches[1]);
         break;
+    case preg_match('/^\/propertease\/public\/favorites\/favorite\/(\d+)$/', $path, $matches) ? $path : false:
+        $controller = new FavoritesController();
+        $controller->updateFavorites($matches[1]);
+        break;
+    case preg_match('/^\/propertease\/public\/property\/favorite\/(\d+)$/', $path, $matches) ? $path : false:
+        $controller = new PropertyController;
+        $controller->updateFavorite($matches[1]);
+        break;
     default:
         $controller = new HomeController();
         $controller->index();
