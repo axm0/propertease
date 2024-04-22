@@ -43,7 +43,7 @@ rect.profileCircle {
 .button {
     color: black;
     font-size: 15px;
-    font-family: Inter, sans-serif;
+    font-family: 'Lora', serif;
     font-weight: 400;
     text-decoration: none;
 }
@@ -51,7 +51,7 @@ rect.profileCircle {
 .text {
     color: black;
     font-size: 35px;
-    font-family: Inter, sans-serif;
+    font-family: 'Lora', serif;
     font-weight: 400;
 }
 
