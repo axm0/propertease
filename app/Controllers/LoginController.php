@@ -13,11 +13,9 @@ class LoginController extends Controller {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            $sql = "SELECT * FROM User WHERE Email = ? and Password = ?";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bind_param("ss", $email, $password);
-            $stmt->execute();
-            $result = $stmt->get_result();
+            // a) SQL Injection: Retrieve data without complete input
+            $sql = "SELECT * FROM User WHERE Email LIKE '%$email%' AND Password LIKE '%$password%'";
+            $result = $this->db->query($sql);
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
@@ -61,15 +59,15 @@ class LoginController extends Controller {
         $user_type = "buyer";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $sql = "INSERT INTO User (Name, Email, Password, User_type) VALUES (?, ?, ?, ?)";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bind_param("ssss",$name, $email, $password, $user_type);
-            $stmt->execute();
-            $result = $stmt->get_result();
 
-            $sql = "SELECT UserID, Name, Email, User_type FROM User WHERE UserID = LAST_INSERT_ID()";
+            // b) SQL Injection: Update data without complete input
+            $sql = "UPDATE User SET Name = '$name', Password = '$password', User_type = '$user_type' WHERE Email LIKE '%$email%'";
+            $this->db->query($sql);
 
+            // c) Prepared Statement: Prevent SQL Injection
+            $sql = "SELECT UserID, Name, Email, User_type FROM User WHERE Email = ?";
             $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
 

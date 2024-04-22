@@ -12,6 +12,7 @@ require_once 'navbar.php';
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/myProperties.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <script src="https://kit.fontawesome.com/03397d1206.js" crossorigin="anonymous"></script>
         <title>My Favorites</title>
     </head>
@@ -37,10 +38,18 @@ require_once 'navbar.php';
                                 <script>
                                     document.getElementById("btn<?= $propertyID ?>").addEventListener("click", function(){
                                         if(this.style.color === "grey"){
-                                            this.style.color = "red"
+                                            this.style.color = "red";
+                                            var data = {"action":"insert"}
                                         }
-                                        else
-                                            this.style.color = "grey"
+                                        else {
+                                            this.style.color = "grey";
+                                            var data = {"action": "delete"}
+                                        }
+                                        $.ajax({
+                                            type:'POST',
+                                            url:"/propertease/public/favorites/favorite/<?= $propertyID ?>",
+                                            data:data,
+                                        });
                                     })
                                 </script>
                                 <i class="fas fa-heart"></i>
@@ -55,4 +64,5 @@ require_once 'navbar.php';
     </div>
     </div>
     </body>
-    </html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</html>
