@@ -68,13 +68,18 @@ class ProfileController extends Controller {
     }
 
     private function getFavoriteProperties($userID) {
-        $sql = "SELECT p.*, ph.PropertyURL
+        $sql = "SELECT DISTINCT p.*, (
+                    SELECT PropertyURL
+                    FROM Photos ph
+                    WHERE ph.PropertyID = p.PropertyID
+                    LIMIT 1
+                ) AS PropertyURL
                 FROM Property p
                 JOIN Favorites f ON p.PropertyID = f.PropertyID
-                LEFT JOIN Photos ph ON p.PropertyID = ph.PropertyID
                 WHERE f.UserID = ?
                 ORDER BY p.price DESC
                 LIMIT 3;";
+
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $userID);
         $stmt->execute();
@@ -87,14 +92,18 @@ class ProfileController extends Controller {
     }
 
     private function getTopProperties($userID) {
-        $sql = "SELECT p.*, ph.PropertyURL
+        $sql = "SELECT DISTINCT p.*, (
+                    SELECT PropertyURL
+                    FROM Photos ph
+                    WHERE ph.PropertyID = p.PropertyID
+                    LIMIT 1
+                ) AS PropertyURL
                 FROM Property p
                 JOIN Owns o ON p.PropertyID = o.PropertyID
-                LEFT JOIN Photos ph ON p.PropertyID = ph.PropertyID
                 WHERE o.UserID = ?
                 ORDER BY p.price DESC
-                LIMIT 3;
-                ";
+                LIMIT 3;";
+
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $userID);
         $stmt->execute();
