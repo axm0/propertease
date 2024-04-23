@@ -33,12 +33,12 @@
     <form id="signup-form" class="form-signin" style="display: none;">
         <span class="h1 mb-3 font-weight-normal">PropertEase</span>
         <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
-        <label for="inputName" class="sr-only">Name</label>
-        <input name="name" type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label for="signupName" class="sr-only">Name</label>
+        <input name="signupName" type="text" id="signupName" class="form-control" placeholder="Name" required autofocus>
+        <label for="signupEmail" class="sr-only">Email address</label>
+        <input name="signupEmail" type="email" id="signupEmail" class="form-control" placeholder="Email address" required>
+        <label for="signupPassword" class="sr-only">Password</label>
+        <input name="signupPassword" type="password" id="signupPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
             <label>
                 <input name="didAgree" type="checkbox" value="agree" required> I agree to the terms and conditions
@@ -143,7 +143,16 @@
                 window.location.href = 'home';
             });
         });
-
+        $('#signin-form, #signup-form').submit(function(e) {
+            if ($(this).is(':hidden')) {
+                e.preventDefault();
+                console.log('Form is hidden, not submitting');
+            }
+        });
+        $('#signin-toggle-btn').click(function(){
+            $('#signup-form').show().find('input:first').focus();
+            $('#signin-form').hide();
+        });
     });
 </script>
 </body>
