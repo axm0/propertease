@@ -81,6 +81,14 @@ switch ($path) {
             $controller->index();
         }
         break;
+    case $url . 'viewProperties':
+        $controller = new ViewPropertiesController();
+        $controller->index();
+        break;
+    case $url . 'viewProperties/filter':
+        $controller = new ViewPropertiesController();
+        $controller->filter();
+        break;
     // Add this case for property detail route
     case preg_match('/^\/propertease\/public\/property\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new PropertyController();
