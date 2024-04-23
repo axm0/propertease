@@ -1,8 +1,5 @@
 <?php
 if (!isset($_SESSION['user_name'])) {
-    // Optionally redirect to login or do other handling
-    // header('Location: /login.php');
-    // exit();
 }
 ?>
 <!-- app/Views/viewProperties.php -->
@@ -20,8 +17,14 @@ require_once 'navbar.php';
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/myProperties.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 3px;
+        }
+    </style>
     <title>All Properties</title>
 </head>
+
 
 <body>
 <div class="header">
@@ -29,6 +32,38 @@ require_once 'navbar.php';
 </div>
 
 <div class="container">
+    <form action="/propertease/public/viewProperties/filter" method="GET">
+        <div class="row mb-3">
+            <div class="col">
+                <select name="state" class="form-control">
+                    <option value="">All States</option>
+                    <?php foreach ($states as $state): ?>
+                        <option value="<?= $state ?>" <?= isset($selectedFilters['State']) && $selectedFilters['State'] === $state ? 'selected' : '' ?>><?= $state ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" name="zipCode" class="form-control" placeholder="Zip Code" value="<?= $selectedFilters['ZipCode'] ?? '' ?>">
+            </div>
+            <div class="col">
+                <select name="propertyType" class="form-control">
+                    <option value="">All Property Types</option>
+                    <?php foreach ($propertyTypes as $type): ?>
+                        <option value="<?= $type ?>" <?= isset($selectedFilters['PropertyType']) && $selectedFilters['PropertyType'] === $type ? 'selected' : '' ?>><?= $type ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col">
+                <input type="number" name="bedrooms" class="form-control" placeholder="Number of Bedrooms" value="<?= $selectedFilters['NumberBedrooms'] ?? '' ?>">
+            </div>
+            <div class="col">
+                <input type="number" name="bathrooms" class="form-control" placeholder="Number of Bathrooms" value="<?= $selectedFilters['NumberBathrooms'] ?? '' ?>">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
     <div class="row">
         <?php
         foreach ($images as $propertyID => $data):
