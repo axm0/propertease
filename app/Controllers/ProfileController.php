@@ -40,12 +40,17 @@ class ProfileController extends Controller {
             $stmt->bind_param("ssssis", $name, $email, $phone, $user_type, $userID, $input_password);
 
             if ($stmt->execute()) {
-                $_SESSION['email'] = $email;
-                $_SESSION['user_name'] = $name;
-                $_SESSION['user_type'] = $user_type;
-                session_write_close();
-                echo "Updated user details";
-                exit();
+
+                $rowsAffected = $stmt->rowCount();
+                if ($rowsAffected > 0) {
+                    $_SESSION['email'] = $email;
+                    $_SESSION['user_name'] = $name;
+                    $_SESSION['user_type'] = $user_type;
+                    session_write_close();
+                    echo "Updated user details";
+                    exit();
+                }
+                echo "No changes were made do to incorrect details.";
             } else {
                 echo "Failed to update user details";
                 exit();
