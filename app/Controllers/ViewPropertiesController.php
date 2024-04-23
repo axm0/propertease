@@ -95,4 +95,27 @@ class ViewPropertiesController extends Controller {
             'selectedFilters' => $filters
         ]);
     }
+    public function search() {
+        $query = $_GET['query'];
+        $likeQuery = '%' . $query . '%';
+
+        $sql = "SELECT Property.*, Photos.PropertyURL FROM Property
+            LEFT JOIN Photos ON Property.PropertyID = Photos.PropertyID
+            WHERE Property.Address LIKE ? OR Property.ZipCode LIKE ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ss", $likeQuery, $likeQuery);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $properties = [];
+        while ($row = $result->fetch_assoc()) {
+            $properties[$row['PropertyID']]['details'] = $row;
+            $properties[$row['PropertyID']]['images'][] = $row['PropertyURL'];
+        }
+
+        $stmt->close();
+
+        $this->view('searchResults', ['properties' => $properties, 'query' => $query]);
+    }
 }
