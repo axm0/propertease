@@ -43,7 +43,7 @@
         <label for="signupPassword" class="sr-only">Password</label>
         <input name="signupPassword" type="password" id="signupPassword" class="form-control" placeholder="Password" required>
         <label for="signupPhone" class="sr-only">Phone number</label>
-        <input name="signupPhone" type="text" id="signupPhone" class="form-control" placeholder="Phone number">
+        <input name="signupPhone" type="text" id="signupPhone" class="form-control" placeholder="Phone number (123-456-7890)">
         <select name="userType" class="form-select mb-3" required>
             <option value="">Select User Type</option>
             <option value="seller">Seller</option>
