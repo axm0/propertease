@@ -6,6 +6,13 @@ if (file_exists(__DIR__ . '/../../config/config.php')) {
     die('Failed to load configuration file');
 }
 
+ini_set('session.use_strict_mode', 1);
+ini_set('session.use_only_cookies', 1);
+ini_set('session.cookie_httponly', 1);
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    ini_set('session.cookie_secure', 1);
+}
+
 session_save_path(__DIR__ . '/../../session_data');
 session_start();
 
@@ -23,6 +30,23 @@ class Controller {
             ${$key} = $value;
         }
         require_once __DIR__ . '/../Views/' . $viewName . '.php';
+    }
+
+    protected function regenerateSession() {
+        session_regenerate_id(true);
+    }
+
+    protected function destroySession() {
+        session_start();
+        $sessionId = session_id();
+        $_SESSION = array();
+        session_destroy();
+
+        $sessionSavePath = session_save_path();
+        $sessionFile = $sessionSavePath . '/sess_' . $sessionId;
+        if (file_exists($sessionFile)) {
+            unlink($sessionFile);
+        }
     }
 }
 ?>

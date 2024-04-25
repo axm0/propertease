@@ -14,7 +14,10 @@ class User {
         if ($result->num_rows === 1) {
             $user = $result->fetch_object();
             if ($password === $user->Password) {
-                return $user;
+                $_SESSION['user_id'] = $user->UserID;
+                $_SESSION['user_name'] = $user->Name;
+                $_SESSION['user_type'] = $user->User_type;
+                return true;
             }
         }
         return false;
