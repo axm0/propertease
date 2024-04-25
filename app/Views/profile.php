@@ -140,7 +140,7 @@
                     window.location.href = 'profile';
                 },
                 error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
+
                 }
             });
         });
