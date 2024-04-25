@@ -87,12 +87,9 @@
                         <input name="email" type="text" class="form-control" id="email" placeholder="Enter new email">
                         <label for="phone" class="my-1">Phone</label>
                         <input name="phone" type="text" class="form-control" id="phone" placeholder="Enter new phone">
-                        <label for="user_type" class="my-1">User Type</label>
-                        <select name="user_type" class="form-control" id="user_type">
-                            <option value="buyer">Buyer</option>
-                            <option value="seller">Seller</option>
-                        </select>
-                        <label for="password" class="my-1">Password<span class="text-danger">*</span></label>
+                        <label for="new_password" class="my-1">New Password</label>
+                        <input name="new_password" type="password" class="form-control" id="new_password" placeholder="Enter new password (optional)">
+                        <label for="password" class="my-1">Current Password<span class="text-danger">*</span></label>
                         <input name="password" type="password" class="form-control" id="password" placeholder="Enter password" required>
                     </div>
                 </form>

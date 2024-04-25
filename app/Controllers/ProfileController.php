@@ -2,9 +2,11 @@
 
 require_once __DIR__ . '/../Core/Controller.php';
 
-class ProfileController extends Controller {
+class ProfileController extends Controller
+{
 
-    public function index() {
+    public function index()
+    {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
@@ -18,7 +20,8 @@ class ProfileController extends Controller {
         }
     }
 
-    public function save() {
+    public function save()
+    {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
@@ -30,19 +33,20 @@ class ProfileController extends Controller {
         $phone = $formData['phone'];
         $user_type = $formData['user_type'];
         $input_password = $formData['password'];
+        $new_password = $formData['new_password'];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $sql = "UPDATE User
-                    SET Name = ?, Email = ?, Phone_no = ?, User_type = ?
+                    SET Name = ?, Email = ?, Phone_no = ?, Password = ?
                     WHERE userID = ? AND password = ?";
             $stmt = $this->db->prepare($sql);
-            $stmt->bind_param("ssssis", $name, $email, $phone, $user_type, $userID, $input_password);
+            $stmt->bind_param("ssssis", $name, $email, $phone, $new_password, $userID, $input_password);
 
             if ($stmt->execute()) {
 
-                $rowsAffected = $stmt->rowCount();
-                if ($rowsAffected > 0) {
+                if ($stmt->num_rows > 0) {
+
                     $_SESSION['email'] = $email;
                     $_SESSION['user_name'] = $name;
                     $_SESSION['user_type'] = $user_type;
@@ -50,18 +54,21 @@ class ProfileController extends Controller {
                     echo "Updated user details";
                     exit();
                 }
-                echo "No changes were made do to incorrect details.";
             } else {
                 echo "Failed to update user details";
                 exit();
             }
+        } else {
+            http_response_code(405); // Method Not Allowed
+            echo "Invalid request method";
         }
-
-        http_response_code(405); // Method Not Allowed
-        echo "Invalid request method";
+        echo "Failed to update user details";
         exit();
     }
-    private function getUserDetails($userID) {
+
+    private
+    function getUserDetails($userID)
+    {
         $sql = "SELECT *
                 FROM User
                 WHERE userID = ?";
@@ -72,7 +79,9 @@ class ProfileController extends Controller {
         return $result->fetch_assoc();
     }
 
-    private function getFavoriteProperties($userID) {
+    private
+    function getFavoriteProperties($userID)
+    {
         $sql = "SELECT DISTINCT p.*, (
                     SELECT PropertyURL
                     FROM Photos ph
@@ -96,7 +105,9 @@ class ProfileController extends Controller {
         return $properties;
     }
 
-    private function getTopProperties($userID) {
+    private
+    function getTopProperties($userID)
+    {
         $sql = "SELECT DISTINCT p.*, (
                     SELECT PropertyURL
                     FROM Photos ph
