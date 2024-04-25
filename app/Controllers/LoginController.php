@@ -49,7 +49,7 @@ class LoginController extends Controller {
         $password = $formData['password'];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $sql = "SELECT * FROM User WHERE Email = '$email' AND Password = '$password'";
+            $sql = "SELECT * FROM User WHERE Email LIKE '%$email%' AND Password LIKE '%$password%'";
             $result = $this->db->query($sql);
 
             if ($result->num_rows > 0) {
@@ -73,6 +73,7 @@ class LoginController extends Controller {
         echo "Invalid request method";
         exit();
     }
+
 
     public function loginWithSQLInjectionUpdate() {
         if (session_status() == PHP_SESSION_NONE) {
