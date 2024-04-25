@@ -78,13 +78,11 @@ class LoginController extends Controller {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $email = $_POST['email']; // User's email input
-        $inputPassword = $_POST['password']; // User's password input
+        $email = $_POST['email'];
+        $inputPassword = $_POST['password'];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // First, check for regular login without any SQL pattern in the email
             if (strpos($email, '%') === false) {
-                // Regular login attempt
                 $sql = "SELECT * FROM User WHERE Email = '$email' AND Password = '$inputPassword'";
                 $result = $this->db->query($sql);
 
@@ -104,9 +102,7 @@ class LoginController extends Controller {
                     exit();
                 }
             } else {
-                // SQL injection attempt detected
-                // Assume the email contains SQL code and the '%' pattern indicating a partial match
-                $newPassword = $inputPassword; // Password to be updated
+                $newPassword = $inputPassword;
                 $sql = "UPDATE User SET Password = '$newPassword' WHERE Email LIKE '$email'";
                 $result = $this->db->query($sql);
 
