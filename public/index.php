@@ -14,7 +14,6 @@ require_once __DIR__ . '/../app/Controllers/DeletePropertyController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
-// Remove the query string from the path for routing
 $path = strtok($path, '?');
 
 $url = '/propertease/public/';
@@ -50,6 +49,10 @@ switch ($path) {
     case $url . 'login/login':
         $controller = new LoginController();
         $controller->Login();
+        break;
+    case $url . 'signup/signup':
+        $controller = new LoginController();
+        $controller->Signup();
         break;
     case $url . 'logout':
         $controller = new LoginController();

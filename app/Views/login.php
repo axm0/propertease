@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="text-center">
-<!-- Centering wrapper start -->
 <div class="d-flex justify-content-center align-items-center vh-100">
     <form id="signin-form" class="form-signin" method="post">
         <span class="h1 mb-3 font-weight-normal">PropertEase</span>
@@ -39,6 +38,13 @@
         <input name="signupEmail" type="email" id="signupEmail" class="form-control" placeholder="Email address" required>
         <label for="signupPassword" class="sr-only">Password</label>
         <input name="signupPassword" type="password" id="signupPassword" class="form-control" placeholder="Password" required>
+        <label for="signupPhone" class="sr-only">Phone number</label>
+        <input name="signupPhone" type="text" id="signupPhone" class="form-control" placeholder="Phone number">
+        <select name="userType" class="form-select mb-3" required>
+            <option value="">Select User Type</option>
+            <option value="seller">Seller</option>
+            <option value="buyer">Buyer</option>
+        </select>
         <div class="checkbox mb-3">
             <label>
                 <input name="didAgree" type="checkbox" value="agree" required> I agree to the terms and conditions
@@ -73,7 +79,6 @@
         </div>
     </form>
 </div>
-<!-- Centering wrapper end -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -91,7 +96,6 @@
         $('#forgot-password-btn').click(function(){
             $('#signin-form').hide();
             $('#forgot-password-form').show();
-            // Show the first step of the forgot password form
             $('#forgot-password-step1').show();
             $('#forgot-password-step2').hide();
         });
@@ -117,7 +121,6 @@
                 event.preventDefault();
             }
         });
-
         $('#signin-form').submit(function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
@@ -126,21 +129,28 @@
                 type: 'POST',
                 url: '/propertease/public/login/login',
                 data: formData,
-            }).done(function() {
-                window.location.href = 'home';
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
             });
         });
-
         $('#signup-form').submit(function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
 
             $.ajax({
                 type: 'POST',
-                url: '/propertease/public/signup',
+                url: '/propertease/public/signup/signup',
                 data: formData,
-            }).done(function() {
-                window.location.href = 'home';
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
             });
         });
         $('#signin-form, #signup-form').submit(function(e) {
