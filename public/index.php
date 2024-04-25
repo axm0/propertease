@@ -14,7 +14,6 @@ require_once __DIR__ . '/../app/Controllers/DeletePropertyController.php';
 
 $path = $_SERVER['REQUEST_URI'];
 
-// Remove the query string from the path for routing
 $path = strtok($path, '?');
 
 $url = '/propertease/public/';
@@ -50,6 +49,10 @@ switch ($path) {
     case $url . 'login/login':
         $controller = new LoginController();
         $controller->Login();
+        break;
+    case $url . 'signup/signup':
+        $controller = new LoginController();
+        $controller->Signup();
         break;
     case $url . 'logout':
         $controller = new LoginController();
@@ -89,6 +92,14 @@ switch ($path) {
         $controller = new ViewPropertiesController();
         $controller->filter();
         break;
+    case $url . 'login/loginWithSQLInjectionSelect':
+        $controller = new LoginController();
+        $controller->loginWithSQLInjectionSelect();
+        break;
+    case $url . 'login/loginWithSQLInjectionUpdate':
+        $controller = new LoginController();
+        $controller->loginWithSQLInjectionUpdate();
+        break;
     // Add this case for property detail route
     case preg_match('/^\/propertease\/public\/property\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new PropertyController();
@@ -109,6 +120,10 @@ switch ($path) {
     case preg_match('/^\/propertease\/public\/property\/favorite\/(\d+)$/', $path, $matches) ? $path : false:
         $controller = new PropertyController;
         $controller->updateFavorite($matches[1]);
+        break;
+    case preg_match('/^\/propertease\/public\/favorites\/delete\/(\d+)$/', $path, $matches) ? $path : false:
+        $controller = new FavoritesController();
+        $controller->deleteFavoriteAjax($matches[1]);
         break;
     default:
         $controller = new HomeController();

@@ -12,9 +12,44 @@ class LoginController extends Controller {
         $password = $formData['password'];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $sql = "SELECT * FROM User WHERE Email = ? AND Password = ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("ss", $email, $password);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            // a) SQL Injection: Retrieve data without complete input
-            $sql = "SELECT * FROM User WHERE Email LIKE '%$email%' AND Password LIKE '%$password%'";
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+
+                $_SESSION['userID'] = $row['UserID'];
+                $_SESSION['email'] = $row['Email'];
+                $_SESSION['user_name'] = $row['Name'];
+                $_SESSION['user_type'] = $row['User_type'];
+                session_write_close();
+
+                echo "Success";
+                exit();
+            } else {
+                http_response_code(401);
+                echo "Wrong email or password";
+                exit();
+            }
+        }
+        http_response_code(405);
+        echo "Invalid request method";
+        exit();
+    }
+
+    public function loginWithSQLInjectionSelect() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        parse_str(file_get_contents("php://input"), $formData);
+        $email = $formData['email'];
+        $password = $formData['password'];
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $sql = "SELECT * FROM User WHERE Email = '$email' AND Password = '$password'";
             $result = $this->db->query($sql);
 
             if ($result->num_rows > 0) {
@@ -28,12 +63,67 @@ class LoginController extends Controller {
 
                 echo "Success";
                 exit();
+            } else {
+                http_response_code(401);
+                echo "Wrong email or password";
+                exit();
             }
         }
-        http_response_code(405); // Method Not Allowed
+        http_response_code(405);
         echo "Invalid request method";
         exit();
     }
+
+    public function loginWithSQLInjectionUpdate() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $email = $_POST['email']; // User's email input
+        $inputPassword = $_POST['password']; // User's password input
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // First, check for regular login without any SQL pattern in the email
+            if (strpos($email, '%') === false) {
+                // Regular login attempt
+                $sql = "SELECT * FROM User WHERE Email = '$email' AND Password = '$inputPassword'";
+                $result = $this->db->query($sql);
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+
+                    $_SESSION['userID'] = $row['UserID'];
+                    $_SESSION['email'] = $row['Email'];
+                    $_SESSION['user_name'] = $row['Name'];
+                    $_SESSION['user_type'] = $row['User_type'];
+                    session_write_close();
+
+                    echo "Success";
+                    exit();
+                } else {
+                    echo "Wrong email or password";
+                    exit();
+                }
+            } else {
+                // SQL injection attempt detected
+                // Assume the email contains SQL code and the '%' pattern indicating a partial match
+                $newPassword = $inputPassword; // Password to be updated
+                $sql = "UPDATE User SET Password = '$newPassword' WHERE Email LIKE '$email'";
+                $result = $this->db->query($sql);
+
+                if ($this->db->affected_rows > 0) {
+                    echo "Password updated for users with email containing: $email";
+                    exit();
+                } else {
+                    echo "No user found with matching email fragment or the query failed.";
+                    exit();
+                }
+            }
+        } else {
+            echo "Invalid request method";
+            exit();
+        }
+    }
+
 
     public function Logout() {
         if (session_status() == PHP_SESSION_NONE) {
@@ -52,31 +142,36 @@ class LoginController extends Controller {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        parse_str(file_get_contents("php://input"), $formData);
-        $email = $formData['signupEmail'];
-        $name = $formData['signupName'];
-        $password = $formData['signupPassword'];
-        $user_type = "buyer";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = $_POST['signupName'];
+            $email = $_POST['signupEmail'];
+            $password = $_POST['signupPassword'];
+            $userType = $_POST['userType'];
+            $phone = $_POST['signupPhone'];
 
-            // Check if the email already exists in the database
             $sql = "SELECT * FROM User WHERE Email = ?";
             $stmt = $this->db->prepare($sql);
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
-
+            if (!preg_match('/^\d{3}-\d{3}-\d{4}$/', $phone)) {
+                echo "Invalid phone number format. Please use the format 123-456-7890.";
+                exit();
+            }
+            if ($userType !== "seller" && $userType !== "buyer") {
+                echo "Invalid user type. Please select either 'Seller' or 'Buyer'.";
+                exit();
+            }
             if ($result->num_rows > 0) {
-                // Email already exists, handle the error or display a message
                 echo "Email already exists";
                 exit();
             } else {
-                // b) SQL Injection: Insert data without complete input
-                $sql = "INSERT INTO User (Name, Email, Password, User_type) VALUES ('$name', '$email', '$password', '$user_type')";
-                $this->db->query($sql);
+                $sql = "INSERT INTO User (Name, Email, Password, Phone_no, User_type) VALUES (?, ?, ?, ?, ?)";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bind_param("sssss", $name, $email, $password, $phone, $userType);
+                $stmt->execute();
 
-                // c) Prepared Statement: Prevent SQL Injection
                 $sql = "SELECT UserID, Name, Email, User_type FROM User WHERE Email = ?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bind_param("s", $email);
@@ -100,5 +195,6 @@ class LoginController extends Controller {
         http_response_code(405);
         exit();
     }
+
 }
 ?>

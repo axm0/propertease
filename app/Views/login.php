@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="text-center">
-<!-- Centering wrapper start -->
 <div class="d-flex justify-content-center align-items-center vh-100">
     <form id="signin-form" class="form-signin" method="post">
         <span class="h1 mb-3 font-weight-normal">PropertEase</span>
@@ -27,6 +26,10 @@
             <button id="signin-toggle-btn" class="btn btn-sm btn-outline-primary">Sign up instead</button>
             <button id="forgot-password-btn" class="btn btn-sm btn-outline-secondary">Forgot Password</button>
         </div>
+        <div class="mt-3">
+            <button id="sql-injection-select-btn" class="btn btn-sm btn-outline-danger">SQL Injection (SELECT)</button>
+            <button id="sql-injection-update-btn" class="btn btn-sm btn-outline-danger">SQL Injection (UPDATE)</button>
+        </div>
         <a href="/" class="back-to-home mt-5">Back to Home</a>
     </form>
 
@@ -39,6 +42,13 @@
         <input name="signupEmail" type="email" id="signupEmail" class="form-control" placeholder="Email address" required>
         <label for="signupPassword" class="sr-only">Password</label>
         <input name="signupPassword" type="password" id="signupPassword" class="form-control" placeholder="Password" required>
+        <label for="signupPhone" class="sr-only">Phone number</label>
+        <input name="signupPhone" type="text" id="signupPhone" class="form-control" placeholder="Phone number">
+        <select name="userType" class="form-select mb-3" required>
+            <option value="">Select User Type</option>
+            <option value="seller">Seller</option>
+            <option value="buyer">Buyer</option>
+        </select>
         <div class="checkbox mb-3">
             <label>
                 <input name="didAgree" type="checkbox" value="agree" required> I agree to the terms and conditions
@@ -72,8 +82,27 @@
             <button id="back-to-signin-btn" class="btn btn-sm btn-outline-secondary">Back to Sign In</button>
         </div>
     </form>
+
+    <!-- SQL Injection with SELECT Statement Form -->
+    <form id="sql-injection-select-form" class="form-signin" method="post" style="display: none;">
+        <span class="h1 mb-3 font-weight-normal">SQL Injection (SELECT)</span>
+        <label for="inputEmailSelect" class="sr-only">Email address</label>
+        <input name="email" type="text" id="inputEmailSelect" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPasswordSelect" class="sr-only">Password</label>
+        <input name="password" type="text" id="inputPasswordSelect" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+    <!-- SQL Injection with UPDATE Statement Form -->
+    <form id="sql-injection-update-form" class="form-signin" method="post" style="display: none;">
+        <span class="h1 mb-3 font-weight-normal">SQL Injection (UPDATE)</span>
+        <label for="inputEmailUpdate" class="sr-only">Email address</label>
+        <input name="email" type="text" id="inputEmailUpdate" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPasswordUpdate" class="sr-only">Password</label>
+        <input name="password" type="text" id="inputPasswordUpdate" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
 </div>
-<!-- Centering wrapper end -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -91,7 +120,6 @@
         $('#forgot-password-btn').click(function(){
             $('#signin-form').hide();
             $('#forgot-password-form').show();
-            // Show the first step of the forgot password form
             $('#forgot-password-step1').show();
             $('#forgot-password-step2').hide();
         });
@@ -117,7 +145,6 @@
                 event.preventDefault();
             }
         });
-
         $('#signin-form').submit(function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
@@ -126,21 +153,28 @@
                 type: 'POST',
                 url: '/propertease/public/login/login',
                 data: formData,
-            }).done(function() {
-                window.location.href = 'home';
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
             });
         });
-
         $('#signup-form').submit(function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
 
             $.ajax({
                 type: 'POST',
-                url: '/propertease/public/signup',
+                url: '/propertease/public/signup/signup',
                 data: formData,
-            }).done(function() {
-                window.location.href = 'home';
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
             });
         });
         $('#signin-form, #signup-form').submit(function(e) {
@@ -152,6 +186,52 @@
         $('#signin-toggle-btn').click(function(){
             $('#signup-form').show().find('input:first').focus();
             $('#signin-form').hide();
+        });
+
+        $('#sql-injection-select-btn').click(function() {
+            $('#signin-form').hide();
+            $('#sql-injection-update-form').hide();
+            $('#sql-injection-select-form').show();
+        });
+
+        $('#sql-injection-update-btn').click(function() {
+            $('#signin-form').hide();
+            $('#sql-injection-select-form').hide();
+            $('#sql-injection-update-form').show();
+        });
+
+        $('#sql-injection-select-form').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/propertease/public/login/loginWithSQLInjectionSelect',
+                data: formData,
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+
+        $('#sql-injection-update-form').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/propertease/public/login/loginWithSQLInjectionUpdate',
+                data: formData,
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            });
         });
     });
 </script>
