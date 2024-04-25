@@ -47,6 +47,12 @@ class FavoritesController extends Controller {
         }
     }
 
+    public function deleteFavoriteAjax($propertyID)
+    {
+        $this->deleteFavorite($propertyID);
+        echo json_encode(['success' => true]);
+    }
+
     private function deleteFavorite($propertyID){
         $sql = "DELETE FROM Favorites
                 WHERE PropertyID = ? AND UserID = ?";

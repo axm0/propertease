@@ -26,6 +26,10 @@
             <button id="signin-toggle-btn" class="btn btn-sm btn-outline-primary">Sign up instead</button>
             <button id="forgot-password-btn" class="btn btn-sm btn-outline-secondary">Forgot Password</button>
         </div>
+        <div class="mt-3">
+            <button id="sql-injection-select-btn" class="btn btn-sm btn-outline-danger">SQL Injection (SELECT)</button>
+            <button id="sql-injection-update-btn" class="btn btn-sm btn-outline-danger">SQL Injection (UPDATE)</button>
+        </div>
         <a href="/" class="back-to-home mt-5">Back to Home</a>
     </form>
 
@@ -77,6 +81,26 @@
         <div class="mt-3">
             <button id="back-to-signin-btn" class="btn btn-sm btn-outline-secondary">Back to Sign In</button>
         </div>
+    </form>
+
+    <!-- SQL Injection with SELECT Statement Form -->
+    <form id="sql-injection-select-form" class="form-signin" method="post" style="display: none;">
+        <span class="h1 mb-3 font-weight-normal">SQL Injection (SELECT)</span>
+        <label for="inputEmailSelect" class="sr-only">Email address</label>
+        <input name="email" type="text" id="inputEmailSelect" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPasswordSelect" class="sr-only">Password</label>
+        <input name="password" type="text" id="inputPasswordSelect" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+    <!-- SQL Injection with UPDATE Statement Form -->
+    <form id="sql-injection-update-form" class="form-signin" method="post" style="display: none;">
+        <span class="h1 mb-3 font-weight-normal">SQL Injection (UPDATE)</span>
+        <label for="inputEmailUpdate" class="sr-only">Email address</label>
+        <input name="email" type="text" id="inputEmailUpdate" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPasswordUpdate" class="sr-only">Password</label>
+        <input name="password" type="text" id="inputPasswordUpdate" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </div>
 
@@ -162,6 +186,52 @@
         $('#signin-toggle-btn').click(function(){
             $('#signup-form').show().find('input:first').focus();
             $('#signin-form').hide();
+        });
+
+        $('#sql-injection-select-btn').click(function() {
+            $('#signin-form').hide();
+            $('#sql-injection-update-form').hide();
+            $('#sql-injection-select-form').show();
+        });
+
+        $('#sql-injection-update-btn').click(function() {
+            $('#signin-form').hide();
+            $('#sql-injection-select-form').hide();
+            $('#sql-injection-update-form').show();
+        });
+
+        $('#sql-injection-select-form').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/propertease/public/login/loginWithSQLInjectionSelect',
+                data: formData,
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+
+        $('#sql-injection-update-form').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/propertease/public/login/loginWithSQLInjectionUpdate',
+                data: formData,
+                success: function() {
+                    window.location.href = 'home';
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            });
         });
     });
 </script>
